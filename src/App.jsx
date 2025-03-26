@@ -1,21 +1,15 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import { getProductList } from "./utils/api";
+import Layout from "./components/Layout";
+import { Outlet } from "react-router";
+import { ProductListProvider } from "./contexts/ProductsContext";
 
 function App() {
-  const [productList, setProductList] = useState([]);
-
-  useEffect(() => {
-    getProductList().then((data) => {
-      setProductList(data);
-    });
-    console.log("P", productList);
-  }, [productList]);
-
   return (
-    <>
-      <h1>hello world</h1>
-    </>
+    <Layout>
+      <ProductListProvider>
+        <Outlet />
+      </ProductListProvider>
+    </Layout>
   );
 }
 

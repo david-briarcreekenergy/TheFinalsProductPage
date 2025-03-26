@@ -1,5 +1,4 @@
 import { useParams } from "react-router";
-
 const ProductDetails = () => {
   let { productId } = useParams();
   return (
