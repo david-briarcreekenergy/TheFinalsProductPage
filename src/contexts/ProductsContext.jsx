@@ -2,12 +2,13 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 export const ProductsContext = createContext();
 
-export function ProductListProvider({ children }) {
+export const ProductListProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const BASE_URL = "https://fakestoreapi.com/products";
+
   useEffect(() => {
     const getProductList = async () => {
       try {
@@ -27,4 +28,4 @@ export function ProductListProvider({ children }) {
       {children}
     </ProductsContext.Provider>
   );
-}
+};

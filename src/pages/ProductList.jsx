@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid2";
 
 const ProductList = () => {
   const { productList, loading, error } = useContext(ProductsContext);
-
+  console.log(productList);
   const listItems = productList.map((product) => (
     <ProductCard key={product.id} product={product}></ProductCard>
   ));
