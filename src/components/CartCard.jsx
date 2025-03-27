@@ -7,18 +7,24 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import Button from "@mui/material/Button";
-import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AddIcon from "@mui/icons-material/Add";
 import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 
 export const CartCard = ({ product }) => {
-  const { cartItems, removeFromCart, setCartItems } = useContext(CartContext);
-
-  const addToQty = (product) => {
-    console.log("addToQty");
+  const { removeFromCart, updateCartItemQty } = useContext(CartContext);
+  const addToQty = () => {
     product.qty++;
-    setCartItems([[...cartItems], product]);
+    updateCartItemQty(product.product.id, product.qty);
+  };
+
+  const subtractFromQty = () => {
+    product.qty--;
+    // if qty = 0 remove from the item from the cart, other wise decrement product.qty
+    product.qty
+      ? updateCartItemQty(product.product.id, product.qty)
+      : removeFromCart(product.product.id);
   };
 
   return (
@@ -36,12 +42,14 @@ export const CartCard = ({ product }) => {
         </Typography>
         <Typography variant="h3">{product.product.price}</Typography>
       </CardContent>
-      <CardActions>
+      <CardActions sx={{ justifyContent: "center" }}>
         <ButtonGroup>
           <IconButton>
-            <RemoveIcon />
+            <DeleteOutlineIcon onClick={subtractFromQty} />
           </IconButton>
-          <div></div>
+          <div>
+            <Typography variant="h4">{product.qty}</Typography>
+          </div>
           <IconButton onClick={addToQty}>
             <AddIcon />
           </IconButton>

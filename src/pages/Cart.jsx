@@ -6,10 +6,6 @@ import CartCard from "../components/CartCard";
 
 const Cart = () => {
   const { cartItems, clearCart } = useContext(CartContext);
-  console.log(cartItems[0]);
-  const productList = cartItems.map((product) => (
-    <CartCard key={product.product.id} product={product} />
-  ));
 
   return (
     <div>
@@ -19,10 +15,13 @@ const Cart = () => {
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <ul>{productList}</ul>
+        <ul>
+          {cartItems.map((product) => (
+            <CartCard key={product.product.id} product={product} />
+          ))}
+        </ul>
       )}
-      {<Button onClick={clearCart}>Clear Cart</Button>}
-      {/* cartItems.length > 0 &&  */}
+      {cartItems.length > 0 && <Button onClick={clearCart}>Clear Cart</Button>}
     </div>
   );
 };

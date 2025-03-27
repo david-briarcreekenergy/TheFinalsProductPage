@@ -7,12 +7,10 @@ export const ProductListProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const BASE_URL = "https://fakestoreapi.com/products";
-
   useEffect(() => {
     const getProductList = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}`);
+        const response = await axios.get("https://fakestoreapi.com/products");
         setProductList(response.data);
       } catch (error) {
         setError(error.message);
