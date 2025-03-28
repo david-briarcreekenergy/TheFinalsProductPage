@@ -1,18 +1,21 @@
-import "./App.css";
+// import "./App.css";
 import Layout from "./components/Layout";
 import { Outlet } from "react-router";
 import { ProductListProvider } from "./contexts/ProductsContext";
 import { CartProvider } from "./contexts/CartContext";
+import { NavigationProvider } from "./contexts/NavigationContext";
 
 function App() {
   return (
-    <Layout>
-      <ProductListProvider>
-        <CartProvider>
-          <Outlet />
-        </CartProvider>
-      </ProductListProvider>
-    </Layout>
+    <ProductListProvider>
+      <NavigationProvider>
+        <Layout>
+          <CartProvider>
+            <Outlet />
+          </CartProvider>
+        </Layout>
+      </NavigationProvider>
+    </ProductListProvider>
   );
 }
 

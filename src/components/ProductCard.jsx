@@ -17,9 +17,12 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { styled } from "@mui/material/styles";
+import { StyledNavLink } from "./StyledNavLink";
+import { NavigationContext } from "../contexts/NavigationContext";
 
 const ProductCard = ({ product }) => {
   const { cartItems, addToCart } = useContext(CartContext);
+  const { handleNavLinkClick } = useContext(NavigationContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
@@ -28,7 +31,6 @@ const ProductCard = ({ product }) => {
     if (cartItems && cartItems.some((item) => item.product.id === product.id)) {
       const clickedEl = event.currentTarget;
       setAnchorEl(clickedEl);
-      console.log("AnchorEl: ", anchorEl);
     } else {
       addToCart({ product: product, qty: 1 });
     }
@@ -39,8 +41,7 @@ const ProductCard = ({ product }) => {
   };
 
   const StyledCard = styled(Card)(({ theme }) => ({
-    minWidth: 320,
-    maxWidth: 345,
+    width: 350,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -62,68 +63,68 @@ const ProductCard = ({ product }) => {
   }));
 
   return (
-    <StyledCard id={product.id}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={product.image}
-        alt={`A picture of a/an ${product.title}`}
-        sx={{ objectFit: "scale-down" }}
-      />
-      <CardHeader
-        title={
-          product.title.length > 70
-            ? product.title.slice(0, 70) + "..."
-            : product.title
-        }
-        sx={{
-          height: 100,
-          display: "flex",
-          alignItems: "flex-start", // Align text at the top
-          padding: 2,
-          overflow: "hidden", // Optional: Adjust padding for better spacing
-        }}
-      />
-      <CardContent sx={{ margin: 0 }}>
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          ${product.price.toFixed(2)}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Box
+    <StyledNavLink
+      to={`/products/details/${product.id}`}
+      key={product.id}
+      onClick={handleNavLinkClick}
+    >
+      <StyledCard id={product.id}>
+        <CardMedia
+          component="img"
+          height="200"
+          image={product.image}
+          alt={`A picture of a/an ${product.title}`}
+          sx={{ objectFit: "scale-down" }}
+        />
+        <CardHeader
+          title={
+            product.title.length > 70
+              ? product.title.slice(0, 70) + "..."
+              : product.title
+          }
           sx={{
+            height: 150,
             display: "flex",
-            justifyContent: "flex-end",
-            width: "100%",
+            alignItems: "flex-start",
+            padding: 2,
+            overflow: "hidden",
+          }}
+        />
+
+        <CardActions disableSpacing>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <Typography variant="h5">${product.price.toFixed(2)}</Typography>
+            <IconButton
+              onClick={handleCartIconClick}
+              id={`add-to-cart-${product.id}`}
+            >
+              <AddShoppingCartIcon fontSize="large" />
+            </IconButton>
+          </Box>
+        </CardActions>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClosePopover}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
           }}
         >
-          {/*    <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
-          </IconButton> */}
-          <IconButton
-            onClick={handleCartIconClick}
-            id={`add-to-cart-${product.id}`}
-            color="success"
-          >
-            <AddShoppingCartIcon fontSize="large" />
-          </IconButton>
-        </Box>
-      </CardActions>
-      <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClosePopover}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-      >
-        <Typography sx={{ p: 2 }}>
-          This item has already been added to your Cart.
-        </Typography>
-      </Popover>
-    </StyledCard>
+          <Typography sx={{ p: 2 }}>
+            This item has already been added to your Cart.
+          </Typography>
+        </Popover>
+      </StyledCard>
+    </StyledNavLink>
   );
 };
 

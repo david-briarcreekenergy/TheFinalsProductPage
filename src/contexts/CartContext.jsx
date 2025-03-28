@@ -30,7 +30,6 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    console.log("Cart changed", cartItems);
     localStorage.setItem("cart", cartItems);
   }, [cartItems]);
 
