@@ -15,11 +15,11 @@ import { CartContext } from "../contexts/CartContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 export const CartCard = ({ product }) => {
-  const [isItemInCart, setIsItemInCart] = useState(true);
+  const [setIsItemInCart] = useState(true);
   const { cartItemCount } = useContext(CartContext);
 
   return (
-    <Card sx={{ width: "70%" }}>
+    <Card sx={{ padding: "10px" }}>
       <Grid container spacing={2}>
         <Grid size={3}>
           <CardMedia
@@ -56,7 +56,6 @@ export const CartCard = ({ product }) => {
             <CardActions sx={{ justifyContent: "center" }}>
               <CartItemQuantityBtnGroup
                 product={product}
-                isItemInCart={isItemInCart}
                 setIsItemInCart={setIsItemInCart}
                 sx={{ marginRight: 0 }}
               />

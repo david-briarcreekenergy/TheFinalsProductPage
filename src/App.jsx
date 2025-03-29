@@ -4,15 +4,19 @@ import { Outlet } from "react-router";
 import { ProductListProvider } from "./contexts/ProductsContext";
 import { CartProvider } from "./contexts/CartContext";
 import { NavigationProvider } from "./contexts/NavigationContext";
+import sundryTheme from "./contexts/ThemeContext";
+import { ThemeProvider } from "@emotion/react";
 
 function App() {
   return (
     <ProductListProvider>
       <NavigationProvider>
         <CartProvider>
-          <Layout>
-            <Outlet />
-          </Layout>
+          <ThemeProvider theme={sundryTheme}>
+            <Layout>
+              <Outlet />
+            </Layout>
+          </ThemeProvider>
         </CartProvider>
       </NavigationProvider>
     </ProductListProvider>

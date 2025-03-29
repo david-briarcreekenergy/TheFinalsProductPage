@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router";
-import { styled, alpha } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 
 import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
@@ -15,11 +15,20 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   flexShrink: 0,
   border: "1px solid",
   borderColor: (theme.vars || theme).palette.divider,
-  backgroundColor: theme.vars
-    ? `rgba(${theme.vars.palette.background.defaultChannel} / 0.4)`
-    : alpha(theme.palette.background.default, 0.4),
+  backgroundColor: theme.palette.secondary.main,
   padding: "8px 12px",
-  height: 100,
+  height: 50,
+}));
+
+const buttonTheme = (theme) => ({
+  color: theme.palette.primary.main,
+  textDecoration: "none",
+  "&:hover": { color: "white" },
+  fontSize: "1.25em",
+});
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  ...buttonTheme(theme),
 }));
 
 export const AppNavBar = () => {
@@ -38,20 +47,20 @@ export const AppNavBar = () => {
 
       <StyledToolbar>
         {location.pathname !== "/" && (
-          <Button onClick={handleBackBtnClick}>Back</Button>
+          <StyledNavLink onClick={handleBackBtnClick}>Back</StyledNavLink>
         )}
-        <Button onClick={handleNavLinkClick}>
-          <NavLink to="/">Home</NavLink>
-        </Button>
-        <Button onClick={handleNavLinkClick}>
-          <NavLink to="/products">Products</NavLink>
-        </Button>
-        <Button onClick={handleNavLinkClick}>
-          <NavLink to="/about">About Us</NavLink>
-        </Button>
-        <Button onClick={handleNavLinkClick}>
-          <NavLink to="/contact">Contact</NavLink>
-        </Button>
+        <StyledNavLink to="/" onClick={handleNavLinkClick}>
+          Home
+        </StyledNavLink>
+        <StyledNavLink to="/products" onClick={handleNavLinkClick}>
+          Products
+        </StyledNavLink>
+        <StyledNavLink to="/about" onClick={handleNavLinkClick}>
+          About Us
+        </StyledNavLink>
+        <StyledNavLink to="/contact" onClick={handleNavLinkClick}>
+          Contact
+        </StyledNavLink>
       </StyledToolbar>
     </AppBar>
   );

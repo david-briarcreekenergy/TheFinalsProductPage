@@ -1,5 +1,6 @@
 import { useRef, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -20,6 +21,7 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
 import { CartContext } from "../contexts/CartContext";
+import { CardMedia } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -72,6 +74,7 @@ export default function PrimarySearchAppBar() {
     handleNavLinkClick,
   } = useContext(NavigationContext);
   const searchRef = useRef(null);
+  const theme = useTheme();
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -131,28 +134,32 @@ export default function PrimarySearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Toolbar>
           <Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
-            >
-              Dave's DooDads
-            </Typography>
-          </Box>
-          <Search ref={searchRef}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-              value={searchText}
-              onChange={handleSearchChange}
+            <CardMedia
+              component="img"
+              image="../../public/sundry-logo.jpg"
+              alt="Sundry company logo"
+              height="60"
+              sx={{
+                objectFit: "scale-down",
+              }}
             />
-          </Search>
+          </Box>
+          <Box sx={{ flexGrow: 1 }}>
+            <Search ref={searchRef}>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+                value={searchText}
+                onChange={handleSearchChange}
+              />
+            </Search>
+          </Box>
+          <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{
               display: "flex",
@@ -170,15 +177,17 @@ export default function PrimarySearchAppBar() {
               <NavLink to="/cart">
                 <Badge
                   badgeContent={totalCartItemCount()}
-                  color="primary"
                   sx={{
                     "& .MuiBadge-badge": {
-                      backgroundColor: "transparent", // Transparent background
-                      color: "white", // Keep the text color
+                      backgroundColor: "transparent",
+                      color: "white",
                     },
                   }}
                 >
-                  <ShoppingCartIcon />
+                  {/* theme comes from ThemeProvider using ThemeContext.jsx */}
+                  <ShoppingCartIcon
+                    sx={{ color: theme.palette.text.primary }}
+                  />
                 </Badge>
               </NavLink>
             </IconButton>

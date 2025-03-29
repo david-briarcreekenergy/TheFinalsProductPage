@@ -19,7 +19,6 @@ import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 const ProductCard = ({ product }) => {
   const { addToCart, checkForItemInCart } = useContext(CartContext);
-  console.log("PRODUCTCARD", product);
   const [isItemInCart, setIsItemInCart] = useState(() => {
     return checkForItemInCart(product.id);
   });
@@ -98,8 +97,8 @@ const ProductCard = ({ product }) => {
           {isItemInCart ? (
             <CartItemQuantityBtnGroup
               product={product}
-              isItemInCart={isItemInCart}
               setIsItemInCart={setIsItemInCart}
+              sx={{ width: "35%" }}
             />
           ) : (
             <IconButton

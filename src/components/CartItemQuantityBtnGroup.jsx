@@ -6,12 +6,7 @@ import Typography from "@mui/material/Typography";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AddIcon from "@mui/icons-material/Add";
 
-const CartItemQuantityBtnGroup = ({
-  product,
-  isItemInCart,
-  setIsItemInCart,
-  sx = {},
-}) => {
+const CartItemQuantityBtnGroup = ({ product, setIsItemInCart, sx = {} }) => {
   const { cartItems, updateCartItemQty, removeFromCart } =
     useContext(CartContext);
   const itemInCart = cartItems.find((item) => item.product.id === product.id);
@@ -39,8 +34,8 @@ const CartItemQuantityBtnGroup = ({
         justifyContent: "end",
         alignItems: "center",
         width: "100%",
-        border: "1px solid black",
-        borderRadius: "10px",
+        border: "1px solid gray",
+        borderRadius: "30px",
         ...sx,
       }}
     >

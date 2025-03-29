@@ -48,7 +48,7 @@ export const CartProvider = ({ children }) => {
       .toFixed(2);
 
   const totalCartItemCount = useCallback(() => {
-    return cartItems.reduce((total) => (total = total + 1), 0);
+    return cartItems.reduce((total) => total + 1, 0);
   }, [cartItems]);
 
   useEffect(() => {
