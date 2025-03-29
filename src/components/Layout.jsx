@@ -1,4 +1,4 @@
-import AppNavBar from "./AppNavBar";
+import { AppNavBar } from "./AppNavBar";
 import Box from "@mui/material/Box";
 
 import {

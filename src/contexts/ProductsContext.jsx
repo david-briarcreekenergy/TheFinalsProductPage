@@ -12,6 +12,7 @@ export const ProductListProvider = ({ children }) => {
       try {
         const response = await axios.get("https://fakestoreapi.com/products");
         setProductList(response.data);
+        // console.log(response.data);
       } catch (error) {
         setError(error.message);
       } finally {

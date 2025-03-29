@@ -9,11 +9,11 @@ function App() {
   return (
     <ProductListProvider>
       <NavigationProvider>
-        <Layout>
-          <CartProvider>
+        <CartProvider>
+          <Layout>
             <Outlet />
-          </CartProvider>
-        </Layout>
+          </Layout>
+        </CartProvider>
       </NavigationProvider>
     </ProductListProvider>
   );

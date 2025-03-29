@@ -1,4 +1,4 @@
-import { useState, useRef, useContext } from "react";
+import { useRef, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import Badge from "@mui/material/Badge";
 
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -17,7 +18,8 @@ import { NavLink } from "react-router";
 import Paper from "@mui/material/Paper";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { NavigationContext } from "../contexts/NavigationContext";
-import { StyledNavLink } from "./StyledNavLink";
+import StyledNavLink from "./StyledNavLink";
+import { CartContext } from "../contexts/CartContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,6 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const { cartItemCount, cartSubTotal } = useContext(CartContext);
   const { productList } = useContext(ProductsContext);
   const {
     searchText,
@@ -114,7 +117,7 @@ export default function PrimarySearchAppBar() {
                 padding: 1,
                 borderBottom: "1px solid #ddd",
                 cursor: "pointer",
-                "&:hover": { backgroundColor: "#f5f5f5" },
+                "&:hover": { backgroundColor: "navy" },
               }}
             >
               <ListItemText>{product.title}</ListItemText>
@@ -150,12 +153,37 @@ export default function PrimarySearchAppBar() {
               onChange={handleSearchChange}
             />
           </Search>
-
-          <IconButton sx={{ marginLeft: 10 }} onClick={handleNavLinkClick}>
-            <NavLink to="/cart">
-              <ShoppingCartIcon />
-            </NavLink>
-          </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+              gap: 0,
+            }}
+          >
+            <IconButton
+              sx={{
+                marginLeft: 10,
+              }}
+              onClick={handleNavLinkClick}
+            >
+              <NavLink to="/cart">
+                <Badge
+                  badgeContent={cartItemCount()}
+                  color="primary"
+                  sx={{
+                    "& .MuiBadge-badge": {
+                      backgroundColor: "transparent", // Transparent background
+                      color: "white", // Keep the text color
+                    },
+                  }}
+                >
+                  <ShoppingCartIcon />
+                </Badge>
+              </NavLink>
+            </IconButton>
+            <Typography>{cartSubTotal()}</Typography>
+          </Box>
         </Toolbar>
       </AppBar>
 

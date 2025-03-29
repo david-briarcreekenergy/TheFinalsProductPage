@@ -1,43 +1,32 @@
 // TODO fix the positioning of the POPOVER
-// TODO favorite operability
-// TODO share operability
+import { useContext, useEffect, useState, useCallback } from "react";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import Popover from "@mui/material/Popover";
+
 import Box from "@mui/material/Box";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import { useContext, useState } from "react";
 import { CartContext } from "../contexts/CartContext";
 import { styled } from "@mui/material/styles";
-import { StyledNavLink } from "./StyledNavLink";
+import { Link } from "react-router";
+import StyledNavLink from "./StyledNavLink";
 import { NavigationContext } from "../contexts/NavigationContext";
+import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 const ProductCard = ({ product }) => {
-  const { cartItems, addToCart } = useContext(CartContext);
+  const { addToCart, checkForItemInCart } = useContext(CartContext);
+  const [isItemInCart, setIsItemInCart] = useState(() => {
+    return checkForItemInCart(product.id);
+  });
   const { handleNavLinkClick } = useContext(NavigationContext);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
 
-  const handleCartIconClick = (event) => {
-    if (cartItems && cartItems.some((item) => item.product.id === product.id)) {
-      const clickedEl = event.currentTarget;
-      setAnchorEl(clickedEl);
-    } else {
-      addToCart({ product: product, qty: 1 });
-    }
-  };
-
-  const handleClosePopover = () => {
-    setAnchorEl(null);
+  const handleCartIconClick = () => {
+    addToCart({ product: product, qty: 1 });
+    setIsItemInCart(true);
   };
 
   const StyledCard = styled(Card)(({ theme }) => ({
@@ -45,37 +34,40 @@ const ProductCard = ({ product }) => {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    height: "50vh",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
     [theme.breakpoints.up("xs")]: {
-      height: "50%", // Full width for extra-small screens
+      height: "50%",
     },
     [theme.breakpoints.up("sm")]: {
-      height: "75%", // 75% width for small screens
+      height: "75%",
     },
     [theme.breakpoints.up("md")]: {
-      height: "50%", // 50% width for medium screens
+      height: "50%",
     },
     [theme.breakpoints.up("lg")]: {
-      height: "25%", // 25% width for large screens
+      height: "50%",
     },
   }));
 
   return (
-    <StyledNavLink
-      to={`/products/details/${product.id}`}
-      key={product.id}
-      onClick={handleNavLinkClick}
-    >
-      <StyledCard id={product.id}>
+    <StyledCard>
+      <Link to={`/products/details/${product.id}`}>
         <CardMedia
           component="img"
           height="200"
           image={product.image}
           alt={`A picture of a/an ${product.title}`}
           sx={{ objectFit: "scale-down" }}
+          onClick={handleNavLinkClick}
         />
+      </Link>
+      <StyledNavLink
+        to={`/products/details/${product.id}`}
+        key={product.id}
+        onClick={handleNavLinkClick}
+        textOnly={true}
+      >
         <CardHeader
           title={
             product.title.length > 70
@@ -90,41 +82,35 @@ const ProductCard = ({ product }) => {
             overflow: "hidden",
           }}
         />
+      </StyledNavLink>
+      <CardActions disableSpacing>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Typography variant="h5">${product.price.toFixed(2)}</Typography>
 
-        <CardActions disableSpacing>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
-            <Typography variant="h5">${product.price.toFixed(2)}</Typography>
+          {isItemInCart ? (
+            <CartItemQuantityBtnGroup
+              product={product}
+              isItemInCart={isItemInCart}
+              setIsItemInCart={setIsItemInCart}
+            />
+          ) : (
             <IconButton
               onClick={handleCartIconClick}
               id={`add-to-cart-${product.id}`}
             >
               <AddShoppingCartIcon fontSize="large" />
             </IconButton>
-          </Box>
-        </CardActions>
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          onClose={handleClosePopover}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-        >
-          <Typography sx={{ p: 2 }}>
-            This item has already been added to your Cart.
-          </Typography>
-        </Popover>
-      </StyledCard>
-    </StyledNavLink>
+          )}
+        </Box>
+      </CardActions>
+    </StyledCard>
   );
 };
 
