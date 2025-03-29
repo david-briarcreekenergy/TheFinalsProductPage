@@ -12,12 +12,14 @@ import Box from "@mui/material/Box";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { CartContext } from "../contexts/CartContext";
 import { styled } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router";
 import StyledNavLink from "./StyledNavLink";
 import { NavigationContext } from "../contexts/NavigationContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 const ProductCard = ({ product }) => {
+  const theme = useTheme();
   const { addToCart, checkForItemInCart } = useContext(CartContext);
   const [isItemInCart, setIsItemInCart] = useState(() => {
     return checkForItemInCart(product.id);
@@ -36,6 +38,7 @@ const ProductCard = ({ product }) => {
     justifyContent: "space-between",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
+    padding: "10px",
     [theme.breakpoints.up("xs")]: {
       height: "50%",
     },
@@ -66,7 +69,7 @@ const ProductCard = ({ product }) => {
         to={`/products/details/${product.id}`}
         key={product.id}
         onClick={handleNavLinkClick}
-        textOnly={true}
+        onWhiteBkgrd={true}
       >
         <CardHeader
           title={
@@ -92,7 +95,9 @@ const ProductCard = ({ product }) => {
             width: "100%",
           }}
         >
-          <Typography variant="h5">${product.price.toFixed(2)}</Typography>
+          <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
+            ${product.price.toFixed(2)}
+          </Typography>
 
           {isItemInCart ? (
             <CartItemQuantityBtnGroup
@@ -104,6 +109,13 @@ const ProductCard = ({ product }) => {
             <IconButton
               onClick={handleCartIconClick}
               id={`add-to-cart-${product.id}`}
+              sx={{
+                color: theme.palette.primary.main,
+                "&:hover": {
+                  color: theme.palette.secondary.main,
+                  backgroundColor: "transparent",
+                },
+              }}
             >
               <AddShoppingCartIcon fontSize="large" />
             </IconButton>

@@ -75,16 +75,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-
-/*   const addToCart = (item) => setCartItems([...cartItems, item]);
-
-const updateCartItemQty = (id, qty) => {
-  setCartItems(
-    cartItems.map(
-      (item) =>
-        item.product.id === id
-          ? { ...item, qty: qty } // Update the quantity
-          : item //dont change any other product
-    )
-  );
-}; */

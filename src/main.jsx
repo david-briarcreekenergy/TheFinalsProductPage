@@ -8,11 +8,6 @@ import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
-import "./index.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

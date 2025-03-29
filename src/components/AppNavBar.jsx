@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router";
 import { styled } from "@mui/material/styles";
-
-import Button from "@mui/material/Button";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import { NavigationContext } from "../contexts/NavigationContext";
+import StyledNavLink from "./StyledNavLink";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -18,17 +17,6 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   backgroundColor: theme.palette.secondary.main,
   padding: "8px 12px",
   height: 50,
-}));
-
-const buttonTheme = (theme) => ({
-  color: theme.palette.primary.main,
-  textDecoration: "none",
-  "&:hover": { color: "white" },
-  fontSize: "1.25em",
-});
-
-const StyledNavLink = styled(NavLink)(({ theme }) => ({
-  ...buttonTheme(theme),
 }));
 
 export const AppNavBar = () => {
@@ -44,7 +32,6 @@ export const AppNavBar = () => {
   return (
     <AppBar enableColorOnDark>
       <PrimarySearchAppBar />
-
       <StyledToolbar>
         {location.pathname !== "/" && (
           <StyledNavLink onClick={handleBackBtnClick}>Back</StyledNavLink>

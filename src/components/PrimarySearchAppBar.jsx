@@ -177,6 +177,7 @@ export default function PrimarySearchAppBar() {
               <NavLink to="/cart">
                 <Badge
                   badgeContent={totalCartItemCount()}
+                  showZero
                   sx={{
                     "& .MuiBadge-badge": {
                       backgroundColor: "transparent",
