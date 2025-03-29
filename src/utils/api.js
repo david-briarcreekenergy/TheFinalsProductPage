@@ -2,29 +2,31 @@ import axios from "axios";
 
 const BASE_URL = "https://fakestoreapi.com/products";
 
+/* export const getProductList = async () => {
+  const response = await axios.get(`${BASE_URL}`);
+  return response.data;
+}; */
+
 export const getProductList = async () => {
-  return await axios.get(`${BASE_URL}`);
-  /* .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      console.log("getProductList axios is done");
-    }); */
+  try {
+    const response = await axios.get(`${BASE_URL}`);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    error.message =
+      "An error occurred retrieving the Product List. Please try again later.";
+    throw error;
+  }
 };
 
 export const getProduct = async (id) => {
-  return await axios
-    .get(`${BASE_URL}/${id}`)
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      console.log("getProduct axios is done");
-    });
+  try {
+    const response = await axios.get(`${BASE_URL}/${id}`);
+    console.log("PROD", response.data);
+    return response.data;
+  } catch (error) {
+    error.message =
+      "There was error retrieving this product. Please try again later.";
+    throw error;
+  }
 };

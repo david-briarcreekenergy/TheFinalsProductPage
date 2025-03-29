@@ -7,7 +7,6 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-
 import Box from "@mui/material/Box";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { CartContext } from "../contexts/CartContext";
@@ -17,6 +16,7 @@ import { Link } from "react-router";
 import StyledNavLink from "./StyledNavLink";
 import { NavigationContext } from "../contexts/NavigationContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
+import Stars from "./Stars";
 
 const ProductCard = ({ product }) => {
   const theme = useTheme();
@@ -39,18 +39,6 @@ const ProductCard = ({ product }) => {
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
     padding: "10px",
-    [theme.breakpoints.up("xs")]: {
-      height: "50%",
-    },
-    [theme.breakpoints.up("sm")]: {
-      height: "75%",
-    },
-    [theme.breakpoints.up("md")]: {
-      height: "50%",
-    },
-    [theme.breakpoints.up("lg")]: {
-      height: "50%",
-    },
   }));
 
   return (
@@ -73,8 +61,8 @@ const ProductCard = ({ product }) => {
       >
         <CardHeader
           title={
-            product.title.length > 70
-              ? product.title.slice(0, 70) + "..."
+            product.title.length > 50
+              ? product.title.slice(0, 50) + "..."
               : product.title
           }
           sx={{
@@ -86,6 +74,9 @@ const ProductCard = ({ product }) => {
           }}
         />
       </StyledNavLink>
+      <Box>
+        <Stars rating={product.rating.rate} />
+      </Box>
       <CardActions disableSpacing>
         <Box
           sx={{

@@ -8,12 +8,15 @@ import Container from "@mui/material/Container";
 
 const ProductList = () => {
   const { productList, loading, error } = useContext(ProductsContext);
-  const listItems = productList.map((product) => (
-    <ProductCard key={product.id} product={product}></ProductCard>
-  ));
+  let listItems = [];
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
+  if (productList) {
+    listItems = productList.map((product) => (
+      <ProductCard key={product.id} product={product}></ProductCard>
+    ));
+  }
 
   return (
     <Box>

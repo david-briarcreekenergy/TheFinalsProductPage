@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { CartContext } from "../contexts/CartContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
+import Stars from "./Stars";
 
 export const CartCard = ({ product }) => {
   const [setIsItemInCart] = useState(true);
@@ -38,6 +39,10 @@ export const CartCard = ({ product }) => {
                 {product.description}
               </Typography>
             </CardContent>
+            <Box sx={{ display: "flex" }}>
+              {product.rating.rate}
+              <Stars rating={product.rating.rate} />
+            </Box>
           </Box>
         </Grid>
         <Grid size={3}>

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
+import { getProductList } from "../utils/api";
 export const ProductsContext = createContext();
 
 export const ProductListProvider = ({ children }) => {
@@ -8,18 +9,24 @@ export const ProductListProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getProductList = async () => {
+    /*  const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setProductList(response.data);
-        // console.log(response.data);
+        const productList = await getProductList(); // Call the API function
+        setProductList(productList); // Set the response to state
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
       }
     };
-    getProductList();
+    fetchProducts(); */
+    getProductList()
+      .then((data) => setProductList(data))
+      .catch((error) => {
+        console.log("ERROR IN CATCH");
+        setError(error.message);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
