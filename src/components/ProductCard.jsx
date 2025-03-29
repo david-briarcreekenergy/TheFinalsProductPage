@@ -1,5 +1,5 @@
 // TODO fix the positioning of the POPOVER
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useState } from "react";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -19,6 +19,7 @@ import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 const ProductCard = ({ product }) => {
   const { addToCart, checkForItemInCart } = useContext(CartContext);
+  console.log("PRODUCTCARD", product);
   const [isItemInCart, setIsItemInCart] = useState(() => {
     return checkForItemInCart(product.id);
   });

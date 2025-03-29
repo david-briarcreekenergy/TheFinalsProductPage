@@ -3,9 +3,19 @@ import { CartContext } from "../contexts/CartContext";
 import { Button } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import CartCard from "../components/CartCard";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 
 const Cart = () => {
   const { cartItems, clearCart } = useContext(CartContext);
+
+  const listItems = cartItems.map((product) => (
+    <CartCard
+      key={product.product.id}
+      product={product.product}
+      qty={product.qty}
+    />
+  ));
 
   return (
     <div>
@@ -13,15 +23,15 @@ const Cart = () => {
         Your Cart
       </Typography>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <Box>
+          <p>Your cart is empty.</p>
+        </Box>
       ) : (
-        <ul>
-          {cartItems.map((product) => (
-            <CartCard key={product.product.id} product={product} />
-          ))}
-        </ul>
+        <Box>
+          <Stack spacing={4}>{listItems}</Stack>
+          <Button onClick={clearCart}>Clear Cart</Button>
+        </Box>
       )}
-      {cartItems.length > 0 && <Button onClick={clearCart}>Clear Cart</Button>}
     </div>
   );
 };

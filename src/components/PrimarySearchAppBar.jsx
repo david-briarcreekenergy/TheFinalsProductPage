@@ -62,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const { cartItemCount, cartSubTotal } = useContext(CartContext);
+  const { totalCartItemCount, cartSubTotal } = useContext(CartContext);
   const { productList } = useContext(ProductsContext);
   const {
     searchText,
@@ -169,7 +169,7 @@ export default function PrimarySearchAppBar() {
             >
               <NavLink to="/cart">
                 <Badge
-                  badgeContent={cartItemCount()}
+                  badgeContent={totalCartItemCount()}
                   color="primary"
                   sx={{
                     "& .MuiBadge-badge": {

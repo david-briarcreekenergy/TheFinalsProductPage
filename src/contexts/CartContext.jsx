@@ -21,6 +21,11 @@ export const CartProvider = ({ children }) => {
     );
   }, []);
 
+  const cartItemCount = (id) => {
+    const item = cartItems.find((item) => item.product.id === id);
+    return item.qty;
+  };
+
   const addToCart = useCallback((item) => {
     setCartItems((prevCartItems) => [...prevCartItems, item]);
   }, []);
@@ -42,7 +47,7 @@ export const CartProvider = ({ children }) => {
       )
       .toFixed(2);
 
-  const cartItemCount = useCallback(() => {
+  const totalCartItemCount = useCallback(() => {
     return cartItems.reduce((total) => (total = total + 1), 0);
   }, [cartItems]);
 
@@ -57,11 +62,12 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         removeFromCart,
+        cartItemCount,
         clearCart,
         updateCartItemQty,
         checkForItemInCart,
         setCartItems,
-        cartItemCount,
+        totalCartItemCount,
         cartSubTotal,
       }}
     >

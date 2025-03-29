@@ -10,16 +10,15 @@ const CartItemQuantityBtnGroup = ({
   product,
   isItemInCart,
   setIsItemInCart,
+  sx = {},
 }) => {
-  const { cartItems, updateCartItemQty, addToCart, removeFromCart, clearCart } =
+  const { cartItems, updateCartItemQty, removeFromCart } =
     useContext(CartContext);
   const itemInCart = cartItems.find((item) => item.product.id === product.id);
 
   const handleAddIconClick = () => {
     const cartQty = itemInCart.qty;
     updateCartItemQty(product.id, cartQty + 1);
-
-    // clearCart();
   };
 
   const handleDeleteIconClick = () => {
@@ -40,6 +39,9 @@ const CartItemQuantityBtnGroup = ({
         justifyContent: "end",
         alignItems: "center",
         width: "100%",
+        border: "1px solid black",
+        borderRadius: "10px",
+        ...sx,
       }}
     >
       <IconButton onClick={handleDeleteIconClick}>
