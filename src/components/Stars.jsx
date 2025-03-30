@@ -1,3 +1,5 @@
+// I built this before I found the Material UI rating component. ugh!
+
 import Box from "@mui/material/Box";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarIcon from "@mui/icons-material/Star";

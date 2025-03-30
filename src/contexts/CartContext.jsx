@@ -53,7 +53,6 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
-    console.log("CART AFTER UPDATE", cartItems);
   }, [cartItems]);
 
   return (
@@ -68,7 +67,7 @@ export const CartProvider = ({ children }) => {
         checkForItemInCart,
         setCartItems,
         totalCartItemCount,
-        cartSubTotal,
+        cartSubTotal
       }}
     >
       {children}

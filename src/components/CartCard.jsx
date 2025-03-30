@@ -5,15 +5,11 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import ButtonGroup from "@mui/material/ButtonGroup";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import AddIcon from "@mui/icons-material/Add";
+import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { CartContext } from "../contexts/CartContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
-import Stars from "./Stars";
 
 export const CartCard = ({ product }) => {
   const [setIsItemInCart] = useState(true);
@@ -41,7 +37,13 @@ export const CartCard = ({ product }) => {
             </CardContent>
             <Box sx={{ display: "flex" }}>
               {product.rating.rate}
-              <Stars rating={product.rating.rate} />
+              <Rating
+                name="rating"
+                precision={0.5}
+                defaultValue={product.rating.rate}
+                size="large"
+                readOnly
+              />
             </Box>
           </Box>
         </Grid>

@@ -5,7 +5,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Stars from "../components/Stars";
+import Rating from "@mui/material/Rating";
 import CartItemQuantityBtnGroup from "../components/CartItemQuantityBtnGroup";
 import { CartContext } from "../contexts/CartContext";
 
@@ -51,7 +51,25 @@ const ProductDetails = () => {
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <Typography>{product.title}</Typography>
           <Typography>{product.description}</Typography>
-          <Stars rating={product.rating.rate} />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              gap: 1,
+            }}
+          >
+            <Typography variant="h5" component="p">
+              {product.rating.rate}
+            </Typography>
+            <Rating
+              name="rating"
+              precision={0.5}
+              defaultValue={product.rating.rate}
+              size="large"
+              readOnly
+            />
+          </Box>
           <Typography>${product.price}</Typography>
           <CartItemQuantityBtnGroup
             product={product}

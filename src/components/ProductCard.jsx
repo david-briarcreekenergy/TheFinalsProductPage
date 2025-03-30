@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import Rating from "@mui/material/Rating";
 import { CartContext } from "../contexts/CartContext";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
@@ -75,7 +76,13 @@ const ProductCard = ({ product }) => {
         />
       </StyledNavLink>
       <Box>
-        <Stars rating={product.rating.rate} />
+        <Rating
+          name="rating"
+          precision={0.5}
+          defaultValue={product.rating.rate}
+          size="large"
+          readOnly
+        />
       </Box>
       <CardActions disableSpacing>
         <Box

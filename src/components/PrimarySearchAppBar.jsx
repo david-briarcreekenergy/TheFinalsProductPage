@@ -1,4 +1,4 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -9,34 +9,33 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import Badge from "@mui/material/Badge";
-
+import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 
+import CardMedia from "@mui/material/CardMedia";
+
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavLink } from "react-router";
-import Paper from "@mui/material/Paper";
 import { ProductsContext } from "../contexts/ProductsContext";
 import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
 import { CartContext } from "../contexts/CartContext";
-import { CardMedia } from "@mui/material";
+import CategorySelect from "./CategorySelect";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
   width: "100%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(3),
-    // width: "auto",
-  },
+    width: "auto"
+  }
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -46,7 +45,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center",
+  justifyContent: "center"
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -56,22 +55,23 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
-    width: "100%",
+    width: "100%"
     /*  [theme.breakpoints.up("md")]: {
       width: "20ch",
     }, */
-  },
+  }
 }));
 
 export default function PrimarySearchAppBar() {
   const { totalCartItemCount, cartSubTotal } = useContext(CartContext);
   const { productList } = useContext(ProductsContext);
+  const { category, setCategory } = useState("");
   const {
     searchText,
     setSearchText,
     filteredProducts,
     setFilteredProducts,
-    handleNavLinkClick,
+    handleNavLinkClick
   } = useContext(NavigationContext);
   const searchRef = useRef(null);
   const theme = useTheme();
@@ -90,6 +90,14 @@ export default function PrimarySearchAppBar() {
     }
   };
 
+  const handleCategoryChange = (e) => {
+    const filtered = productList.filter(
+      (product) =>
+        product.category.toLowerCase() === e.target.value.toLowerCase()
+    );
+    setFilteredProducts(filtered);
+  };
+
   const renderSearchResults = (
     <Paper
       sx={{
@@ -105,7 +113,7 @@ export default function PrimarySearchAppBar() {
           : "100%",
         zIndex: 10,
         maxHeight: 300,
-        overflowY: "auto",
+        overflowY: "auto"
       }}
     >
       <List>
@@ -120,7 +128,7 @@ export default function PrimarySearchAppBar() {
                 padding: 1,
                 borderBottom: "1px solid #ddd",
                 cursor: "pointer",
-                "&:hover": { backgroundColor: "navy" },
+                "&:hover": { backgroundColor: "navy" }
               }}
             >
               <ListItemText>{product.title}</ListItemText>
@@ -142,11 +150,18 @@ export default function PrimarySearchAppBar() {
               alt="Sundry company logo"
               height="60"
               sx={{
-                objectFit: "scale-down",
+                objectFit: "scale-down"
               }}
             />
           </Box>
-          <Box sx={{ flexGrow: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexGrow: 1,
+              border: "1px solid white",
+              flexWrap: "wrap"
+            }}
+          >
             <Search ref={searchRef}>
               <SearchIconWrapper>
                 <SearchIcon />
@@ -158,19 +173,24 @@ export default function PrimarySearchAppBar() {
                 onChange={handleSearchChange}
               />
             </Search>
+            <CategorySelect
+              category={category}
+              setCategory={setCategory}
+              handleCategoryChange={handleCategoryChange}
+            />
           </Box>
-          <Box sx={{ flexGrow: 1 }} />
+          {/* <Box sx={{ flexGrow: 1 }} /> */}
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-end",
-              gap: 0,
+              gap: 0
             }}
           >
             <IconButton
               sx={{
-                marginLeft: 10,
+                marginLeft: 10
               }}
               onClick={handleNavLinkClick}
             >
@@ -181,8 +201,8 @@ export default function PrimarySearchAppBar() {
                   sx={{
                     "& .MuiBadge-badge": {
                       backgroundColor: "transparent",
-                      color: "white",
-                    },
+                      color: "white"
+                    }
                   }}
                 >
                   {/* theme comes from ThemeProvider using ThemeContext.jsx */}

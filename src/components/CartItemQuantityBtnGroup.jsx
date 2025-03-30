@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { CartContext } from "../contexts/CartContext";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import IconButton from "@mui/material/IconButton";
@@ -9,6 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 const CartItemQuantityBtnGroup = ({ product, setIsItemInCart, sx = {} }) => {
   const { cartItems, updateCartItemQty, removeFromCart } =
     useContext(CartContext);
+
   const itemInCart = cartItems.find((item) => item.product.id === product.id);
 
   const handleAddIconClick = () => {
