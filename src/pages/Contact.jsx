@@ -17,7 +17,7 @@ export default function Contact() {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          flexWrap: "wrap",
+          flexWrap: "wrap"
         }}
       >
         <Box
@@ -25,7 +25,7 @@ export default function Contact() {
             display: "flex",
             flexDirection: "column",
             gap: 4,
-            marginBottom: 4,
+            marginBottom: 4
           }}
         >
           <Typography variant="h3" component="h1">
@@ -63,10 +63,10 @@ export default function Contact() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
-            height: "70vh",
+            justifyContent: "flex-start"
           }}
         >
+          <Box sx={{ height: "10vh" }}></Box>
           <ContactForm />
         </Box>
       </Container>

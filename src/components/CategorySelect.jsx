@@ -45,7 +45,6 @@ const CategorySelect = () => {
         id="categories-label"
         sx={{
           height: "40%",
-          // padding: 0,
           lineHeight: "1em", // Adjust line height if necessary
           fontSize: "0.8rem", // Match font size with Search,
           color: "white"

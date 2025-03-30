@@ -51,12 +51,11 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
+  width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%"
+    transition: theme.transitions.create("width")
     /*  [theme.breakpoints.up("md")]: {
       width: "20ch",
     }, */
@@ -103,7 +102,10 @@ export default function PrimarySearchAppBar() {
                   padding: 1,
                   borderBottom: "1px solid #ddd",
                   cursor: "pointer",
-                  "&:hover": { backgroundColor: "navy" }
+                  "&:hover": {
+                    backgroundColor: theme.palette.secondary.main,
+                    color: "black"
+                  }
                 }}
               >
                 <ListItemText>{product.title}</ListItemText>

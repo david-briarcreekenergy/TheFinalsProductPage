@@ -12,7 +12,7 @@ const ContactForm = () => {
     lastName: "",
     email: "",
     phone: "",
-    message: "",
+    message: ""
   });
   const [open, setOpen] = useState(false);
 
@@ -38,7 +38,7 @@ const ContactForm = () => {
       lastName: "",
       email: "",
       phone: "",
-      message: "",
+      message: ""
     });
   };
 
@@ -52,11 +52,11 @@ const ContactForm = () => {
           flexDirection: "column",
           gap: 2,
           maxWidth: "600px",
-          margin: "0 auto",
+          margin: "0 auto"
         }}
       >
         <Grid container spacing={2}>
-          <Grid xs={12} sm={6}>
+          <Grid>
             <TextField
               label="First Name"
               name="firstName"
@@ -66,7 +66,7 @@ const ContactForm = () => {
               required
             />
           </Grid>
-          <Grid xs={12} sm={6}>
+          <Grid>
             <TextField
               label="Last Name"
               name="lastName"
