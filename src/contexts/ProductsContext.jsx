@@ -7,6 +7,7 @@ export const ProductsContext = createContext();
 export const ProductListProvider = ({ children }) => {
   const [productList, setProductList] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchText, setSearchText] = useState("");
@@ -33,6 +34,7 @@ export const ProductListProvider = ({ children }) => {
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
+    setCategory(value);
     setSearchText(value);
     // Filter products based on the search text
     if (value.trim() !== "") {
@@ -47,7 +49,7 @@ export const ProductListProvider = ({ children }) => {
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;
-
+    setCategory(category);
     if (category) {
       const filtered = productList.filter(
         (product) => product.category.toLowerCase() === category.toLowerCase()
@@ -74,6 +76,7 @@ export const ProductListProvider = ({ children }) => {
         setFilteredSearchProducts,
         handleSearchChange,
         handleCategoryChange,
+        category,
         categories,
         filteredCategoryProducts,
         setFilteredCategoryProducts,

@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { CartContext } from "../contexts/CartContext";
 import FormControl from "@mui/material/FormControl";
@@ -27,9 +27,13 @@ const StyledSelect = styled(Select)(({ theme }) => ({
 }));
 
 const CategorySelect = () => {
-  const { categories, handleCategoryChange } = useContext(ProductsContext);
-  const [category, setCategory] = useState("");
+  const { category, categories, handleCategoryChange } =
+    useContext(ProductsContext);
+
   const theme = useTheme();
+
+  console.log("Selected Category:", category);
+  console.log("Categories:", categories);
 
   return (
     <FormControl
@@ -47,24 +51,29 @@ const CategorySelect = () => {
           height: "40%",
           lineHeight: "1em", // Adjust line height if necessary
           fontSize: "0.8rem", // Match font size with Search,
-          color: "white"
+          color: "white",
+          "& .MuiInputLabel-label": { color: "white" }
         }}
-        disableAnimation={true}
       >
         Categories
       </InputLabel>
       <Select
         labelId="categories-label"
         id="categories-select"
-        value={category}
+        value={category || ""}
         label="Category"
         onChange={handleCategoryChange}
+        color="white"
         sx={{
           backgroundColor: alpha(theme.palette.common.white, 0.15),
           "&:hover": {
             backgroundColor: alpha(theme.palette.common.white, 0.25)
           },
-          height: "40px"
+          height: "40px",
+          color: "white",
+          "& .MuiSelect-select": {
+            color: "white" // Ensure the selected value text is white
+          }
         }}
       >
         {categories.map((cat) => (
