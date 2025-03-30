@@ -104,7 +104,7 @@ const ProductList = () => {
         <Grid
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 3 }}
-          justifyContent="center"
+          justifyContent="flex-start"
           alignItems="center"
         >
           {listItems}

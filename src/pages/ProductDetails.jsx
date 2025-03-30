@@ -70,10 +70,12 @@ const ProductDetails = () => {
             />
           </Box>
           <Typography>${product.price}</Typography>
-          <CartItemQuantityBtnGroup
-            product={product}
-            setIsItemInCart={setIsItemInCart}
-          />
+          {checkForItemInCart(product.id) && (
+            <CartItemQuantityBtnGroup
+              product={product}
+              setIsItemInCart={setIsItemInCart}
+            />
+          )}
         </Box>
       </Container>
     );

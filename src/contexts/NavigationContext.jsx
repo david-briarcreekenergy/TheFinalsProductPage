@@ -11,6 +11,7 @@ export const NavigationProvider = ({ children }) => {
   } = useContext(ProductsContext);
 
   const handleNavLinkClick = () => {
+    console.log("INHANDLENAVLINKCLICK");
     setSearchText("");
     setFilteredSearchProducts([]);
     setFilteredCategoryProducts([]);

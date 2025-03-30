@@ -19,6 +19,9 @@ export const ProductListProvider = ({ children }) => {
   useEffect(() => {
     getProductList()
       .then((data) => {
+        if (typeof data !== "object") {
+          throw "No Data";
+        }
         setProductList(data);
         const categories = [
           ...new Set(data.map((product) => product.category))
@@ -26,15 +29,14 @@ export const ProductListProvider = ({ children }) => {
         setCategories(categories);
       })
       .catch((error) => {
-        alert("ERROR in ProductsContext>useEffect>GetProductList", error);
-        setError(error.message);
+        alert("ERROR in ProductsContext>useEffect>GetProductList: " + error);
+        setError(error);
       })
       .finally(() => setLoading(false));
   }, []);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
-    setCategory(value);
     setSearchText(value);
     // Filter products based on the search text
     if (value.trim() !== "") {

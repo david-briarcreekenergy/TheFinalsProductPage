@@ -67,6 +67,10 @@ export default function PrimarySearchAppBar() {
   const searchRef = useRef(null);
   const theme = useTheme();
 
+  const handleClick = () => {
+    handleNavLinkClick();
+  };
+
   const renderSearchResults = (
     <Paper
       sx={{
@@ -91,7 +95,7 @@ export default function PrimarySearchAppBar() {
             <StyledNavLink
               to={`/products/details/${product.id}`}
               key={product.id}
-              onClick={handleNavLinkClick}
+              onClick={handleClick}
               onWhiteBkgrd
             >
               <ListItem
@@ -144,7 +148,7 @@ export default function PrimarySearchAppBar() {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
-                value={searchText}
+                value={searchText || ""}
                 onChange={handleSearchChange}
               />
             </Search>

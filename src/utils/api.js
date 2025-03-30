@@ -1,13 +1,14 @@
 import axios from "axios";
 
 // see vite.config to see the proxy server set up
-const BASE_URL = "api/products";
+const BASE_URL = "/api/products";
 
 export const getProductList = async () => {
   try {
     const response = await axios.get(`${BASE_URL}`);
     return response.data;
   } catch (error) {
+    console.error("ERROR in api.js: ", error);
     error.message =
       "An error occurred retrieving the Product List. Please try again later.";
     throw error;
