@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Box from "@mui/material/Box";
@@ -7,16 +7,17 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 
 const ProductList = () => {
-  const { productList, loading, error } = useContext(ProductsContext);
-  let listItems = [];
+  const { productList, filteredCategoryProducts, loading, error } =
+    useContext(ProductsContext);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
-  if (productList) {
-    listItems = productList.map((product) => (
-      <ProductCard key={product.id} product={product}></ProductCard>
-    ));
-  }
+
+  const listItems = (
+    filteredCategoryProducts && filteredCategoryProducts.length > 0
+      ? filteredCategoryProducts
+      : productList
+  ).map((product) => <ProductCard key={product.id} product={product} />);
 
   return (
     <Box>

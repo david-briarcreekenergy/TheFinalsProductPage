@@ -18,33 +18,55 @@ const StyledSelect = styled(Select)(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
   marginLeft: 0,
-  width: "50%",
+  /* width: "50%",
+  height: "50%", */
   [theme.breakpoints.up("sm")]: {
     // marginLeft: theme.spacing(3),
-    width: "auto"
+    // width: "auto"
   }
 }));
 
-const CategorySelect = ({ category, setCategory, handleCategoryChange }) => {
-  const { categories } = useContext(ProductsContext);
-  const [categoryList, setCategoryList] = useState(categories || []);
+const CategorySelect = () => {
+  const { categories, handleCategoryChange } = useContext(ProductsContext);
+  const [category, setCategory] = useState("");
   const theme = useTheme();
-  const handleChange = (e) => {
-    alert("CATEGORY changed");
-    setCategory(e.target.value);
-  };
 
   return (
-    <FormControl sx={{ width: "25%" }}>
-      <InputLabel id="categories-label" sx={{ color: "white" }}>
+    <FormControl
+      sx={{
+        display: "flex",
+        // flexGrow: 1,
+        margin: 0,
+        padding: 0,
+        width: "20%"
+      }}
+    >
+      <InputLabel
+        id="categories-label"
+        sx={{
+          height: "40%",
+          // padding: 0,
+          lineHeight: "1em", // Adjust line height if necessary
+          fontSize: "0.8rem", // Match font size with Search,
+          color: "white"
+        }}
+        disableAnimation={true}
+      >
         Categories
       </InputLabel>
-      <StyledSelect
+      <Select
         labelId="categories-label"
         id="categories-select"
-        value={""}
+        value={category}
         label="Category"
         onChange={handleCategoryChange}
+        sx={{
+          backgroundColor: alpha(theme.palette.common.white, 0.15),
+          "&:hover": {
+            backgroundColor: alpha(theme.palette.common.white, 0.25)
+          },
+          height: "40px"
+        }}
       >
         {categories.map((cat) => (
           <MenuItem
@@ -61,7 +83,7 @@ const CategorySelect = ({ category, setCategory, handleCategoryChange }) => {
             </Typography>
           </MenuItem>
         ))}
-      </StyledSelect>
+      </Select>
     </FormControl>
   );
 };

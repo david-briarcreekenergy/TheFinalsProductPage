@@ -23,7 +23,6 @@ const ProductDetails = () => {
     getProduct(productId)
       .then((data) => {
         setProduct(data);
-        console.log("DATA", data);
       })
       .catch((error) => {
         setError(error.message);
@@ -56,7 +55,7 @@ const ProductDetails = () => {
               display: "flex",
               flexDirection: "row",
               alignItems: "flex-start",
-              gap: 1,
+              gap: 1
             }}
           >
             <Typography variant="h5" component="p">

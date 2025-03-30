@@ -39,7 +39,7 @@ const ProductCard = ({ product }) => {
     justifyContent: "space-between",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
-    padding: "10px",
+    padding: "10px"
   }));
 
   return (
@@ -61,17 +61,13 @@ const ProductCard = ({ product }) => {
         onWhiteBkgrd={true}
       >
         <CardHeader
-          title={
-            product.title.length > 50
-              ? product.title.slice(0, 50) + "..."
-              : product.title
-          }
+          title={product.title}
           sx={{
             height: 150,
             display: "flex",
             alignItems: "flex-start",
             padding: 2,
-            overflow: "hidden",
+            overflow: "hidden"
           }}
         />
       </StyledNavLink>
@@ -90,7 +86,7 @@ const ProductCard = ({ product }) => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "100%",
+            width: "100%"
           }}
         >
           <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
@@ -111,8 +107,8 @@ const ProductCard = ({ product }) => {
                 color: theme.palette.primary.main,
                 "&:hover": {
                   color: theme.palette.secondary.main,
-                  backgroundColor: "transparent",
-                },
+                  backgroundColor: "transparent"
+                }
               }}
             >
               <AddShoppingCartIcon fontSize="large" />

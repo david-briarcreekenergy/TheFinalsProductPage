@@ -1,26 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useContext } from "react";
+import { ProductsContext } from "./ProductsContext";
 
 export const NavigationContext = createContext();
 
 export const NavigationProvider = ({ children }) => {
-  const [searchText, setSearchText] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const {
+    setSearchText,
+    setFilteredSearchProducts,
+    setFilteredCategoryProducts
+  } = useContext(ProductsContext);
 
   const handleNavLinkClick = () => {
     setSearchText("");
-    setFilteredProducts([]);
+    setFilteredSearchProducts([]);
+    setFilteredCategoryProducts([]);
   };
 
   return (
-    <NavigationContext.Provider
-      value={{
-        searchText,
-        setSearchText,
-        filteredProducts,
-        setFilteredProducts,
-        handleNavLinkClick,
-      }}
-    >
+    <NavigationContext.Provider value={handleNavLinkClick}>
       {children}
     </NavigationContext.Provider>
   );

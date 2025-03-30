@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
+import { ProductsContext } from "../contexts/ProductsContext";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -16,7 +17,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.divider,
   backgroundColor: theme.palette.secondary.main,
   padding: "8px 12px",
-  height: 50,
+  height: 50
 }));
 
 export const AppNavBar = () => {
@@ -29,6 +30,12 @@ export const AppNavBar = () => {
     handleNavLinkClick();
   };
 
+  // trying to call handleNavLink directly on the onCLick event doest work
+  // have to wrap it is this
+  const handleNavClick = () => {
+    handleNavLinkClick();
+  };
+
   return (
     <AppBar enableColorOnDark>
       <PrimarySearchAppBar />
@@ -36,16 +43,16 @@ export const AppNavBar = () => {
         {location.pathname !== "/" && (
           <StyledNavLink onClick={handleBackBtnClick}>Back</StyledNavLink>
         )}
-        <StyledNavLink to="/" onClick={handleNavLinkClick}>
+        <StyledNavLink to="/" onClick={handleNavClick}>
           Home
         </StyledNavLink>
-        <StyledNavLink to="/products" onClick={handleNavLinkClick}>
+        <StyledNavLink to="/products" onClick={handleNavClick}>
           Products
         </StyledNavLink>
-        <StyledNavLink to="/about" onClick={handleNavLinkClick}>
+        <StyledNavLink to="/about" onClick={handleNavClick}>
           About Us
         </StyledNavLink>
-        <StyledNavLink to="/contact" onClick={handleNavLinkClick}>
+        <StyledNavLink to="/contact" onClick={handleNavClick}>
           Contact
         </StyledNavLink>
       </StyledToolbar>

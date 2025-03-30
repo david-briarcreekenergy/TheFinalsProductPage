@@ -25,16 +25,17 @@ import { CartContext } from "../contexts/CartContext";
 import CategorySelect from "./CategorySelect";
 
 const Search = styled("div")(({ theme }) => ({
+  height: "40px",
   position: "relative",
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25)
   },
-  width: "100%",
+  width: "50%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto"
+    marginLeft: theme.spacing(3)
+    // width: "auto"
   }
 }));
 
@@ -64,39 +65,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const { totalCartItemCount, cartSubTotal } = useContext(CartContext);
-  const { productList } = useContext(ProductsContext);
-  const { category, setCategory } = useState("");
-  const {
-    searchText,
-    setSearchText,
-    filteredProducts,
-    setFilteredProducts,
-    handleNavLinkClick
-  } = useContext(NavigationContext);
+  const { searchText, filteredSearchProducts, handleSearchChange } =
+    useContext(ProductsContext);
+  const { handleNavLinkClick } = useContext(NavigationContext);
   const searchRef = useRef(null);
   const theme = useTheme();
-
-  const handleSearchChange = (event) => {
-    const value = event.target.value;
-    setSearchText(value);
-    // Filter products based on the search text
-    if (value.trim() !== "") {
-      const filtered = productList.filter((product) =>
-        product.title.toLowerCase().includes(value.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-    } else {
-      setFilteredProducts([]);
-    }
-  };
-
-  const handleCategoryChange = (e) => {
-    const filtered = productList.filter(
-      (product) =>
-        product.category.toLowerCase() === e.target.value.toLowerCase()
-    );
-    setFilteredProducts(filtered);
-  };
 
   const renderSearchResults = (
     <Paper
@@ -117,24 +90,26 @@ export default function PrimarySearchAppBar() {
       }}
     >
       <List>
-        {filteredProducts.map((product) => (
-          <StyledNavLink
-            to={`/products/details/${product.id}`}
-            key={product.id}
-            onClick={handleNavLinkClick}
-          >
-            <ListItem
-              sx={{
-                padding: 1,
-                borderBottom: "1px solid #ddd",
-                cursor: "pointer",
-                "&:hover": { backgroundColor: "navy" }
-              }}
+        {filteredSearchProducts &&
+          filteredSearchProducts.map((product) => (
+            <StyledNavLink
+              to={`/products/details/${product.id}`}
+              key={product.id}
+              onClick={handleNavLinkClick}
+              onWhiteBkgrd
             >
-              <ListItemText>{product.title}</ListItemText>
-            </ListItem>
-          </StyledNavLink>
-        ))}
+              <ListItem
+                sx={{
+                  padding: 1,
+                  borderBottom: "1px solid #ddd",
+                  cursor: "pointer",
+                  "&:hover": { backgroundColor: "navy" }
+                }}
+              >
+                <ListItemText>{product.title}</ListItemText>
+              </ListItem>
+            </StyledNavLink>
+          ))}
       </List>
     </Paper>
   );
@@ -159,7 +134,8 @@ export default function PrimarySearchAppBar() {
               display: "flex",
               flexGrow: 1,
               border: "1px solid white",
-              flexWrap: "wrap"
+              flexWrap: "wrap",
+              alignItems: "center"
             }}
           >
             <Search ref={searchRef}>
@@ -173,13 +149,8 @@ export default function PrimarySearchAppBar() {
                 onChange={handleSearchChange}
               />
             </Search>
-            <CategorySelect
-              category={category}
-              setCategory={setCategory}
-              handleCategoryChange={handleCategoryChange}
-            />
+            <CategorySelect />
           </Box>
-          {/* <Box sx={{ flexGrow: 1 }} /> */}
           <Box
             sx={{
               display: "flex",
@@ -218,7 +189,9 @@ export default function PrimarySearchAppBar() {
       </AppBar>
 
       {/* Search Results */}
-      {filteredProducts.length > 0 && renderSearchResults}
+      {filteredSearchProducts &&
+        filteredSearchProducts.length > 0 &&
+        renderSearchResults}
     </Box>
   );
 }
