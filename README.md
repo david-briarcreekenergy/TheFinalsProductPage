@@ -1,12 +1,94 @@
-# React + Vite
+# TheFinalsProductPage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an ecommerce site, listing a number pf products a user can choose and then add/remove from their cart.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you begin, ensure you have the following software installed on your machine:
 
-## Expanding the ESLint configuration
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/) (version 14.x or higher)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setting Up the Project
+
+1. **Clone the Repository**
+
+   Open your terminal and run the following command to clone the repository:
+
+   ```sh
+   git clone github.com:david-briarcreekenergy/TheFinalsProductPage.git
+   ```
+
+2. **Navigate to the Project Directory**
+
+   Change to the project directory:
+
+   ```sh
+   cd TheFinalsProductPage
+   ```
+
+3. **Install Dependencies**
+
+   Install the project dependencies using npm:
+
+   ```sh
+   npm install
+   ```
+
+## Running the Project Locally as Development build
+
+To start the program locally, using the development build, run the following command:
+
+```sh
+npm run preview
+```
+
+OR
+
+``` sh
+npm run dev
+```
+
+This command will start the development server. You can view the project in your web browser at `http://localhost:4173`.
+
+## Building the Project
+
+To create a production build of the project, run:
+
+```sh
+npm run build
+```
+
+The build files will be generated in the `build` directory.
+
+## Deploying the Project
+
+### Manual Deployment
+
+1. **Upload Build Files**
+
+   Upload the contents of the `build` directory to your web server.
+
+2. **Configure the Web Server**
+
+   Ensure your web server is configured to serve the static files from the `build` directory.
+
+## Contributing
+
+If you would like to contribute to the project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add new feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or feedback, please contact [home.bound.963@gmail.com](mailto:home.bound.963@gmail.com).

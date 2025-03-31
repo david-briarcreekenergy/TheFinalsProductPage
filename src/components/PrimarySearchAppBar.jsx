@@ -13,9 +13,7 @@ import Paper from "@mui/material/Paper";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-
 import CardMedia from "@mui/material/CardMedia";
-
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { NavLink } from "react-router";
 import { ProductsContext } from "../contexts/ProductsContext";
@@ -23,6 +21,7 @@ import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
 import { CartContext } from "../contexts/CartContext";
 import CategorySelect from "./CategorySelect";
+import logo from "../../public/sundry-logo.jpg";
 
 const Search = styled("div")(({ theme }) => ({
   height: "40px",
@@ -30,13 +29,13 @@ const Search = styled("div")(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25)
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   width: "50%",
   [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3)
+    marginLeft: theme.spacing(3),
     // width: "auto"
-  }
+  },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -46,7 +45,7 @@ const SearchIconWrapper = styled("div")(({ theme }) => ({
   pointerEvents: "none",
   display: "flex",
   alignItems: "center",
-  justifyContent: "center"
+  justifyContent: "center",
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -55,8 +54,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width")
-  }
+    transition: theme.transitions.create("width"),
+  },
 }));
 
 export default function PrimarySearchAppBar() {
@@ -86,7 +85,7 @@ export default function PrimarySearchAppBar() {
           : "100%",
         zIndex: 10,
         maxHeight: 300,
-        overflowY: "auto"
+        overflowY: "auto",
       }}
     >
       <List>
@@ -105,8 +104,8 @@ export default function PrimarySearchAppBar() {
                   cursor: "pointer",
                   "&:hover": {
                     backgroundColor: theme.palette.secondary.main,
-                    color: "black"
-                  }
+                    color: "black",
+                  },
                 }}
               >
                 <ListItemText>{product.title}</ListItemText>
@@ -124,11 +123,11 @@ export default function PrimarySearchAppBar() {
           <Box>
             <CardMedia
               component="img"
-              image="../../public/sundry-logo.jpg"
+              image={logo}
               alt="Sundry company logo"
               height="60"
               sx={{
-                objectFit: "scale-down"
+                objectFit: "scale-down",
               }}
             />
           </Box>
@@ -137,7 +136,7 @@ export default function PrimarySearchAppBar() {
               display: "flex",
               flexGrow: 1,
               flexWrap: "wrap",
-              alignItems: "center"
+              alignItems: "center",
             }}
           >
             <Search ref={searchRef}>
@@ -158,12 +157,12 @@ export default function PrimarySearchAppBar() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-end",
-              gap: 0
+              gap: 0,
             }}
           >
             <IconButton
               sx={{
-                marginLeft: 10
+                marginLeft: 10,
               }}
               onClick={handleNavLinkClick}
             >
@@ -174,8 +173,8 @@ export default function PrimarySearchAppBar() {
                   sx={{
                     "& .MuiBadge-badge": {
                       backgroundColor: "transparent",
-                      color: "white"
-                    }
+                      color: "white",
+                    },
                   }}
                 >
                   {/* theme comes from ThemeProvider using ThemeContext.jsx */}
