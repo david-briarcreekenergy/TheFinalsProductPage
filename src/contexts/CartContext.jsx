@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
-
+  // comment for github desktop
   const checkForItemInCart = useCallback(
     (id) => cartItems.some((item) => item.product.id === id),
     [cartItems]
@@ -20,6 +20,8 @@ export const CartProvider = ({ children }) => {
       )
     );
   }, []);
+
+  const getCartItem = (id) => cartItems.find((item) => item.product.id === id);
 
   const cartItemCount = (id) => {
     const item = cartItems.find((item) => item.product.id === id);
@@ -59,6 +61,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        getCartItem,
         addToCart,
         removeFromCart,
         cartItemCount,

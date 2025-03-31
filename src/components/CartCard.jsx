@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
+import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -6,14 +7,25 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
+import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { CartContext } from "../contexts/CartContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 export const CartCard = ({ product }) => {
-  const [setIsItemInCart] = useState(true);
-  const { cartItemCount } = useContext(CartContext);
+  const { cartItemCount, removeFromCart } = useContext(CartContext);
+
+  const StyledButton = styled(Button)(({ theme }) => ({
+    margin: 0,
+    "&:hover": {
+      color: theme.palette.text.primary
+    }
+  }));
+
+  const handleRemoveFromCartBtnClick = () => {
+    removeFromCart(product.id);
+  };
 
   return (
     <Card sx={{ padding: "10px" }}>
@@ -54,18 +66,27 @@ export const CartCard = ({ product }) => {
               flexDirection: "column",
               alignItems: "flex-end",
               justifyContent: "center",
-              gap: 6,
+              gap: 6
             }}
           >
             <Typography variant="h5" sx={{ marginRight: "10px" }}>
               {`$${(product.price * cartItemCount(product.id)).toFixed(2)}`}
             </Typography>
-            <CardActions sx={{ justifyContent: "center" }}>
-              <CartItemQuantityBtnGroup
-                product={product}
-                setIsItemInCart={setIsItemInCart}
-                sx={{ marginRight: 0 }}
-              />
+            <CardActions
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+              }}
+            >
+              <CartItemQuantityBtnGroup product={product} />
+              <StyledButton
+                variant="text"
+                onClick={handleRemoveFromCartBtnClick}
+              >
+                Remove
+              </StyledButton>
             </CardActions>
           </Box>
         </Grid>

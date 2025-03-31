@@ -69,13 +69,9 @@ const ProductDetails = () => {
               readOnly
             />
           </Box>
-          <Typography>${product.price}</Typography>
-          {checkForItemInCart(product.id) && (
-            <CartItemQuantityBtnGroup
-              product={product}
-              setIsItemInCart={setIsItemInCart}
-            />
-          )}
+          <Typography>${product.price.toFixed(2)}</Typography>
+
+          <CartItemQuantityBtnGroup product={product} />
         </Box>
       </Container>
     );

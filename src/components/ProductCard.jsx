@@ -92,28 +92,7 @@ const ProductCard = ({ product }) => {
           <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
             ${product.price.toFixed(2)}
           </Typography>
-
-          {isItemInCart ? (
-            <CartItemQuantityBtnGroup
-              product={product}
-              setIsItemInCart={setIsItemInCart}
-              sx={{ width: "35%" }}
-            />
-          ) : (
-            <IconButton
-              onClick={handleCartIconClick}
-              id={`add-to-cart-${product.id}`}
-              sx={{
-                color: theme.palette.primary.main,
-                "&:hover": {
-                  color: theme.palette.secondary.main,
-                  backgroundColor: "transparent"
-                }
-              }}
-            >
-              <AddShoppingCartIcon fontSize="large" />
-            </IconButton>
-          )}
+          <CartItemQuantityBtnGroup product={product} />
         </Box>
       </CardActions>
     </StyledCard>
