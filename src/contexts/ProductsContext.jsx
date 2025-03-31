@@ -51,9 +51,7 @@ export const ProductListProvider = ({ children }) => {
     if (sort === sorts.none) {
       setSortedItems(null);
       return;
-    }
-
-    if (sort === sorts.rating) {
+    } else if (sort === sorts.rating) {
       sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
     } else if (sort === sorts.priceHigh) {
       sortedProducts.sort((a, b) => b.price - a.price);
@@ -99,6 +97,12 @@ export const ProductListProvider = ({ children }) => {
     setSearchText("");
   };
 
+  const restoreProductList = () => {
+    setFilteredCategoryProducts([]);
+    setSelectedSort("");
+    setSortedItems(null);
+  };
+
   return (
     <ProductsContext.Provider
       value={{
@@ -117,6 +121,7 @@ export const ProductListProvider = ({ children }) => {
         setFilteredCategoryProducts,
         sortedItems,
         setSortedItems,
+        restoreProductList,
         loading,
         error,
       }}

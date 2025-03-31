@@ -27,10 +27,10 @@ const ProductList = () => {
         sx={{
           display: "flex",
           justifyContent: "flex-end",
-          alignItems: "center",
+          alignItems: "flex-end",
           gap: 4,
           width: "100%",
-          marginBottom: "10px",
+          marginBottom: "1em",
           marginRight: "30px",
         }}
       >

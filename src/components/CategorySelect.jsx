@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
-import { CartContext } from "../contexts/CartContext";
+import { useTheme } from "@emotion/react";
 import FormControl from "@mui/material/FormControl";
+import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 import { ProductsContext } from "../contexts/ProductsContext";
-import { Typography } from "@mui/material";
-import { useTheme } from "@emotion/react";
 import { titleCase } from "../utils/stringUtils";
 
 const StyledSelect = styled(Select)(({ theme }) => ({
@@ -15,13 +16,13 @@ const StyledSelect = styled(Select)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25)
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  marginLeft: 0
+  marginLeft: 0,
 }));
 
 const CategorySelect = () => {
-  const { category, categories, handleCategoryChange } =
+  const { category, categories, handleCategoryChange, restoreProductList } =
     useContext(ProductsContext);
 
   const theme = useTheme();
@@ -33,8 +34,8 @@ const CategorySelect = () => {
       sx={{
         "&:hover": {
           backgroundColor: alpha(theme.palette.secondary.main, 0.25),
-          color: "black"
-        }
+          color: "black",
+        },
       }}
     >
       <Typography color="black">{titleCase(cat)}</Typography>
@@ -42,42 +43,59 @@ const CategorySelect = () => {
   ));
 
   return (
-    <FormControl
+    <Box
       sx={{
-        margin: 0,
-        padding: 0,
-        width: "20%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
+        alignItems: "flex-end",
       }}
     >
-      <InputLabel
-        id="categories-label"
-        sx={{ lineHeight: "0.9em", height: "50%", color: "black" }}
-      >
-        Categories
-      </InputLabel>
-      <Select
-        labelId="categories-label"
-        id="categories-select"
-        value={category}
-        label="Category"
-        onChange={handleCategoryChange}
+      <Button
+        onClick={restoreProductList}
         sx={{
-          paddingLeft: "10px",
-          backgroundColor: alpha(theme.palette.common.white, 0.15),
-          "&:hover": {
-            backgroundColor: alpha(theme.palette.common.white, 0.25)
-          },
-          height: "40px",
-          width: "100%"
+          "&:hover": { color: theme.palette.text.primary },
         }}
       >
-        {menuItems}
-      </Select>
-    </FormControl>
+        <Typography variant="caption">Clear All</Typography>
+      </Button>
+      <FormControl
+        sx={{
+          margin: 0,
+          padding: 0,
+          width: "20%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <InputLabel
+          id="categories-label"
+          sx={{ lineHeight: "0.9em", height: "50%", color: "black" }}
+        >
+          Categories
+        </InputLabel>
+        <Select
+          labelId="categories-label"
+          id="categories-select"
+          value={category}
+          label="Category"
+          onChange={handleCategoryChange}
+          sx={{
+            paddingLeft: "10px",
+            backgroundColor: alpha(theme.palette.common.white, 0.15),
+            "&:hover": {
+              backgroundColor: alpha(theme.palette.common.white, 0.25),
+            },
+            height: "40px",
+            width: "100%",
+          }}
+        >
+          {menuItems}
+        </Select>
+      </FormControl>
+    </Box>
   );
 };
 
