@@ -16,13 +16,13 @@ const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { productId } = useParams();
+  const { id } = useParams();
   const { setCategory, setFilteredCategoryProducts, filteredByCategory } =
     useContext(ProductsContext);
   const theme = useTheme();
 
   useEffect(() => {
-    getProduct(productId)
+    getProduct(id)
       .then((data) => {
         setProduct(data);
       })
@@ -32,7 +32,7 @@ const ProductDetails = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [productId]);
+  }, [id]);
 
   const handleCategoryClick = (e) => {
     const category = e.target.textContent;

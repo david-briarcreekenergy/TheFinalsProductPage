@@ -1,12 +1,11 @@
 import { useContext } from "react";
-import { NavLink, useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
 import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
-import { ProductsContext } from "../contexts/ProductsContext";
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: "flex",
@@ -17,7 +16,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   borderColor: (theme.vars || theme).palette.divider,
   backgroundColor: theme.palette.secondary.main,
   padding: "8px 12px",
-  height: 50
+  height: 50,
 }));
 
 export const AppNavBar = () => {

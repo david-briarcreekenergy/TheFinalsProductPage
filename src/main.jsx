@@ -17,10 +17,12 @@ createRoot(document.getElementById("root")).render(
         <Route element={<App />}>
           <Route path="/" element={<Home />}></Route>
 
-          <Route path="products">
+          {/*     <Route path="products">
             <Route index element={<ProductList />} />
             <Route path="details/:productId" element={<ProductDetails />} />
-          </Route>
+          </Route> */}
+          <Route path="products" element={<ProductList />} />
+          <Route path="product/:id" element={<ProductDetails />} />
 
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />

@@ -39,12 +39,12 @@ const ProductCard = ({ product }) => {
     justifyContent: "space-between",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[3],
-    padding: "10px"
+    padding: "10px",
   }));
 
   return (
     <StyledCard>
-      <Link to={`/products/details/${product.id}`}>
+      <Link to={`/product/${product.id}`}>
         <CardMedia
           component="img"
           height="200"
@@ -55,7 +55,7 @@ const ProductCard = ({ product }) => {
         />
       </Link>
       <StyledNavLink
-        to={`/products/details/${product.id}`}
+        to={`/product/${product.id}`}
         key={product.id}
         onClick={handleNavLinkClick}
         onWhiteBkgrd={true}
@@ -67,7 +67,7 @@ const ProductCard = ({ product }) => {
             display: "flex",
             alignItems: "flex-start",
             padding: 2,
-            overflow: "hidden"
+            overflow: "hidden",
           }}
         />
       </StyledNavLink>
@@ -86,7 +86,7 @@ const ProductCard = ({ product }) => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "100%"
+            width: "100%",
           }}
         >
           <Typography variant="h5" sx={{ color: theme.palette.primary.main }}>
