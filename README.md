@@ -1,6 +1,6 @@
 # TheFinalsProductPage
 
-This project is an ecommerce site, listing a number pf products a user can choose and then add/remove from their cart.
+This project is an e-commerce site, listing a number pf products a user can choose and then add/remove from their cart.
 
 ## Prerequisites
 
@@ -40,12 +40,6 @@ Before you begin, ensure you have the following software installed on your machi
 
 To start the program locally, using the development build, run the following command:
 
-```sh
-npm run preview
-```
-
-OR
-
 ``` sh
 npm run dev
 ```
@@ -58,6 +52,12 @@ To create a production build of the project, run:
 
 ```sh
 npm run build
+```
+
+To then preview that build locally, run:
+
+```sh
+npm run preview
 ```
 
 The build files will be generated in the `build` directory.
