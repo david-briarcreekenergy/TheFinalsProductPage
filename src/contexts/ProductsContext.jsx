@@ -1,7 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
-
 import { getProductList } from "../utils/api";
+import { sorts } from "../utils/sorts";
+
 export const ProductsContext = createContext();
 
 export const ProductListProvider = ({ children }) => {
@@ -13,6 +14,8 @@ export const ProductListProvider = ({ children }) => {
   const [searchText, setSearchText] = useState("");
   const [filteredSearchProducts, setFilteredSearchProducts] = useState([]);
   const [filteredCategoryProducts, setFilteredCategoryProducts] = useState([]);
+  const [selectedSort, setSelectedSort] = useState("");
+  const [sortedItems, setSortedItems] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ export const ProductListProvider = ({ children }) => {
         }
         setProductList(data);
         const categories = [
-          ...new Set(data.map((product) => product.category))
+          ...new Set(data.map((product) => product.category)),
         ].sort();
         setCategories(categories);
       })
@@ -34,6 +37,32 @@ export const ProductListProvider = ({ children }) => {
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const handleSortChange = (event) => {
+    const sort = event.target.value;
+    setSelectedSort(sort);
+
+    let sortedProducts = [
+      ...(filteredCategoryProducts.length > 0
+        ? filteredCategoryProducts
+        : productList),
+    ];
+
+    if (sort === sorts.none) {
+      setSortedItems(null);
+      return;
+    }
+
+    if (sort === sorts.rating) {
+      sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
+    } else if (sort === sorts.priceHigh) {
+      sortedProducts.sort((a, b) => b.price - a.price);
+    } else if (sort === sorts.priceLow) {
+      sortedProducts.sort((a, b) => a.price - b.price);
+    }
+
+    setSortedItems(sortedProducts);
+  };
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -51,6 +80,8 @@ export const ProductListProvider = ({ children }) => {
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;
+    setSelectedSort("");
+    setSortedItems(null);
     setCategory(category);
     if (category) {
       const filtered = productList.filter(
@@ -78,12 +109,16 @@ export const ProductListProvider = ({ children }) => {
         setFilteredSearchProducts,
         handleSearchChange,
         handleCategoryChange,
+        selectedSort,
+        handleSortChange,
         category,
         categories,
         filteredCategoryProducts,
         setFilteredCategoryProducts,
+        sortedItems,
+        setSortedItems,
         loading,
-        error
+        error,
       }}
     >
       {children}

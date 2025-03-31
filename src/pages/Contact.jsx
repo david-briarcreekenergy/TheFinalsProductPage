@@ -52,11 +52,25 @@ export default function Contact() {
             </Link>
             <IconButton />
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-            <PlaceOutlinedIcon fontSize="large" />
-            <Typography variant="h5" component="p">
-              15 Ward Ave Right Here, TN 34567
-            </Typography>
+          <Box>
+            <Link
+              href="https://www.google.com/maps?q=15+Ward+Ave+Right+Here,+TN+34567"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 4,
+                color: "inherit",
+                textDecoration: "none",
+                "&:hover": { color: theme.palette.secondary.main }
+              }}
+            >
+              <PlaceOutlinedIcon fontSize="large" />
+              <Typography variant="h5" component="p">
+                15 Ward Ave Right Here, TN 34567
+              </Typography>
+            </Link>
           </Box>
         </Box>
         <Box

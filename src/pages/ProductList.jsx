@@ -1,73 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "../contexts/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { camelCaseToTitleCase } from "../utils/stringUtils";
-import { Typography } from "@mui/material";
-import { useTheme } from "@mui/material";
-
-const sorts = {
-  none: 0,
-  rating: 1,
-  priceHigh: 2,
-  priceLow: 3
-};
+import CategorySelect from "../components/CategorySelect";
+import SortSelect from "../components/SortSelect";
 
 const ProductList = () => {
-  const { productList, filteredCategoryProducts, loading, error } =
+  const { productList, filteredCategoryProducts, loading, error, sortedItems } =
     useContext(ProductsContext);
-  const [sortedItems, setSortedItems] = useState(null);
-  const [selectedSort, setSelectedSort] = useState(sorts.none);
-  const theme = useTheme();
-
-  const menuItems = Object.entries(sorts).map(([key, value]) => (
-    <MenuItem
-      key={key}
-      value={value}
-      sx={{
-        "&:hover": {
-          backgroundColor: theme.palette.secondary.main,
-          color: "black"
-        }
-      }}
-    >
-      <Typography color={theme.palette.primary.main}>
-        {camelCaseToTitleCase(key)}
-      </Typography>
-    </MenuItem>
-  ));
-
-  const handleSortChange = (event) => {
-    const sort = event.target.value;
-    setSelectedSort(sort);
-
-    let sortedProducts = [
-      ...(filteredCategoryProducts.length > 0
-        ? filteredCategoryProducts
-        : productList)
-    ];
-
-    if (sort === sorts.none) {
-      setSortedItems(null);
-      return;
-    }
-
-    if (sort === sorts.rating) {
-      sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
-    } else if (sort === sorts.priceHigh) {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (sort === sorts.priceLow) {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    }
-
-    setSortedItems(sortedProducts);
-  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -85,24 +26,17 @@ const ProductList = () => {
       <Box
         sx={{
           display: "flex",
-          justifySelf: "flex-end",
-          width: "20%",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          gap: 4,
+          width: "100%",
           marginBottom: "10px",
-          marginRight: "15px"
+          marginRight: "30px",
         }}
       >
-        <FormControl fullWidth>
-          <InputLabel id="sort-select-label">Sort</InputLabel>
-          <Select
-            labelId="sort-select-label"
-            id="sort-select"
-            value={selectedSort}
-            label="Sort"
-            onChange={handleSortChange}
-          >
-            {menuItems}
-          </Select>
-        </FormControl>
+        <CategorySelect />
+
+        <SortSelect />
       </Box>
       <Box>
         <Grid

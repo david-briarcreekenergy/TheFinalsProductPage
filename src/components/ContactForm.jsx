@@ -64,6 +64,13 @@ const ContactForm = () => {
               onChange={handleChange}
               fullWidth
               required
+              slotProps={{
+                inputLabel: {
+                  sx: {
+                    color: "black"
+                  }
+                }
+              }}
             />
           </Grid>
           <Grid>
@@ -74,6 +81,13 @@ const ContactForm = () => {
               onChange={handleChange}
               fullWidth
               required
+              slotProps={{
+                inputLabel: {
+                  sx: {
+                    color: "black"
+                  }
+                }
+              }}
             />
           </Grid>
         </Grid>
@@ -85,6 +99,13 @@ const ContactForm = () => {
           onChange={handleChange}
           fullWidth
           required
+          slotProps={{
+            inputLabel: {
+              sx: {
+                color: "black"
+              }
+            }
+          }}
         />
         <TextField
           label="Phone"
@@ -93,6 +114,13 @@ const ContactForm = () => {
           value={formData.phone}
           onChange={handleChange}
           fullWidth
+          slotProps={{
+            inputLabel: {
+              sx: {
+                color: "black"
+              }
+            }
+          }}
         />
         <TextField
           label="Message"
@@ -103,6 +131,13 @@ const ContactForm = () => {
           multiline
           rows={4}
           required
+          slotProps={{
+            inputLabel: {
+              sx: {
+                color: "black"
+              }
+            }
+          }}
         />
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
           <Button

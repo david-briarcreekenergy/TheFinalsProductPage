@@ -26,32 +26,43 @@ const CategorySelect = () => {
 
   const theme = useTheme();
 
+  const menuItems = categories.map((cat) => (
+    <MenuItem
+      key={cat}
+      value={cat}
+      sx={{
+        "&:hover": {
+          backgroundColor: alpha(theme.palette.secondary.main, 0.25),
+          color: "black"
+        }
+      }}
+    >
+      <Typography color="black">{titleCase(cat)}</Typography>
+    </MenuItem>
+  ));
+
   return (
     <FormControl
       sx={{
-        display: "flex",
-        // flexGrow: 1,
         margin: 0,
         padding: 0,
-        width: "20%"
+        width: "20%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
       <InputLabel
         id="categories-label"
-        sx={{
-          height: "40%",
-          lineHeight: "1em",
-          fontSize: "0.8rem", //equal to Search fontSize
-          color: "white",
-          "& .MuiLabel-label": { color: "white" }
-        }}
+        sx={{ lineHeight: "0.9em", height: "50%", color: "black" }}
       >
         Categories
       </InputLabel>
       <Select
         labelId="categories-label"
         id="categories-select"
-        value={category || ""}
+        value={category}
         label="Category"
         onChange={handleCategoryChange}
         sx={{
@@ -60,24 +71,11 @@ const CategorySelect = () => {
           "&:hover": {
             backgroundColor: alpha(theme.palette.common.white, 0.25)
           },
-          height: "40px"
+          height: "40px",
+          width: "100%"
         }}
       >
-        {categories.map((cat) => (
-          <MenuItem
-            key={cat}
-            value={cat}
-            sx={{
-              "&:hover": {
-                backgroundColor: alpha(theme.palette.secondary.main, 0.25)
-              }
-            }}
-          >
-            <Typography color={theme.palette.primary.main}>
-              {titleCase(cat)}
-            </Typography>
-          </MenuItem>
-        ))}
+        {menuItems}
       </Select>
     </FormControl>
   );

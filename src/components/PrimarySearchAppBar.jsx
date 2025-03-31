@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -136,7 +136,6 @@ export default function PrimarySearchAppBar() {
             sx={{
               display: "flex",
               flexGrow: 1,
-              border: "1px solid white",
               flexWrap: "wrap",
               alignItems: "center"
             }}
@@ -152,7 +151,7 @@ export default function PrimarySearchAppBar() {
                 onChange={handleSearchChange}
               />
             </Search>
-            <CategorySelect />
+            {/* <CategorySelect /> */}
           </Box>
           <Box
             sx={{
