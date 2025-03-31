@@ -9,6 +9,7 @@ import SortSelect from "../components/SortSelect";
 const ProductList = () => {
   const { productList, filteredCategoryProducts, loading, error, sortedItems } =
     useContext(ProductsContext);
+  console.log(filteredCategoryProducts);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;

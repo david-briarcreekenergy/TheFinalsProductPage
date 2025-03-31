@@ -1,23 +1,25 @@
 import { useEffect, useState, useContext } from "react";
+import { useTheme } from "@emotion/react";
 import { useParams } from "react-router";
 import { getProduct } from "../utils/api";
+import { ProductsContext } from "../contexts/ProductsContext";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+import { NavLink } from "react-router";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 import CartItemQuantityBtnGroup from "../components/CartItemQuantityBtnGroup";
-import { CartContext } from "../contexts/CartContext";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { addToCart, checkForItemInCart } = useContext(CartContext);
-  const [isItemInCart, setIsItemInCart] = useState(() => {
-    return checkForItemInCart(product.id);
-  });
-  let { productId } = useParams();
+  const { productId } = useParams();
+  const { setCategory, setFilteredCategoryProducts, filteredByCategory } =
+    useContext(ProductsContext);
+  const theme = useTheme();
 
   useEffect(() => {
     getProduct(productId)
@@ -32,48 +34,109 @@ const ProductDetails = () => {
       });
   }, [productId]);
 
+  const handleCategoryClick = (e) => {
+    const category = e.target.textContent;
+    setCategory(category);
+    setFilteredCategoryProducts(filteredByCategory(category));
+  };
+
   if (error) return <Typography>Error: {error}</Typography>;
   if (loading) return <Typography>Loading...</Typography>;
   if (product && product.rating)
     return (
-      <Container sx={{ display: "flex", gap: 4, marginTop: 4 }}>
-        <Box>
-          <CardMedia
-            component="img"
-            width="40%"
-            height="40%"
-            image={product.image}
-            alt={`A picture of a/an ${product.title}`}
-            sx={{ objectFit: "scale-down", border: "1px solid black" }}
-          />
-        </Box>
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography>{product.title}</Typography>
-          <Typography>{product.description}</Typography>
+      <Box>
+        <NavLink
+          to="/products"
+          onClick={handleCategoryClick}
+          style={() => {
+            return {
+              textDecoration: "none",
+              color: theme.palette.primary.main,
+            };
+          }}
+        >
+          <Typography
+            component="div"
+            sx={{
+              textTransform: "capitalize",
+              "&:hover": { color: theme.palette.secondary.main },
+            }}
+          >
+            {product.category}
+          </Typography>
+        </NavLink>
+        <Container
+          maxWidth={false}
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginTop: 4,
+            width: "100%",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
-              flexDirection: "row",
-              alignItems: "flex-start",
-              gap: 1
+              justifyContent: "center",
             }}
           >
-            <Typography variant="h5" component="p">
-              {product.rating.rate}
-            </Typography>
-            <Rating
-              name="rating"
-              precision={0.5}
-              defaultValue={product.rating.rate}
-              size="large"
-              readOnly
+            <CardMedia
+              component="img"
+              image={product.image}
+              alt={`A picture of a/an ${product.title}`}
+              sx={{
+                width: "75%",
+                objectFit: "scale-down",
+              }}
             />
           </Box>
-          <Typography>${product.price.toFixed(2)}</Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 4,
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <Typography variant="h3" component="h1">
+              {product.title}
+            </Typography>
+            <Typography variant="h5">{product.description}</Typography>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "flex-start",
+                gap: 1,
+              }}
+            >
+              <Typography
+                variant="h5"
+                component="p"
+                sx={{ fontWeight: "bold" }}
+              >
+                {product.rating.rate}
+              </Typography>
+              <Rating
+                name="rating"
+                precision={0.5}
+                defaultValue={product.rating.rate}
+                size="large"
+                readOnly
+              />
+            </Box>
+            <Typography
+              variant="h5"
+              component="p"
+              sx={{ fontWeight: "bold", alignSelf: "flex-end" }}
+            >
+              ${product.price.toFixed(2)}
+            </Typography>
 
-          <CartItemQuantityBtnGroup product={product} />
-        </Box>
-      </Container>
+            <CartItemQuantityBtnGroup product={product} />
+          </Box>
+        </Container>
+      </Box>
     );
 };
 

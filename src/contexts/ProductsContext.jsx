@@ -76,16 +76,18 @@ export const ProductListProvider = ({ children }) => {
     }
   };
 
+  const filteredByCategory = (category) =>
+    productList.filter(
+      (product) => product.category.toLowerCase() === category.toLowerCase()
+    );
+
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedSort("");
     setSortedItems(null);
     setCategory(category);
     if (category) {
-      const filtered = productList.filter(
-        (product) => product.category.toLowerCase() === category.toLowerCase()
-      );
-      setFilteredCategoryProducts(filtered);
+      setFilteredCategoryProducts(filteredByCategory(category));
       if (location !== "products") {
         navigate("products");
       }
@@ -116,7 +118,9 @@ export const ProductListProvider = ({ children }) => {
         selectedSort,
         handleSortChange,
         category,
+        setCategory,
         categories,
+        filteredByCategory,
         filteredCategoryProducts,
         setFilteredCategoryProducts,
         sortedItems,
