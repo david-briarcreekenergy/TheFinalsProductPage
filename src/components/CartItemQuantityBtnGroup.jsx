@@ -29,11 +29,9 @@ const CartItemQuantityBtnGroup = ({ product, sx = {} }) => {
     const cartItem = getCartItem(product.id);
     let cartQty = cartItem.qty;
     cartQty = cartQty - 1;
-    if (cartQty) {
-      updateCartItemQty(product.id, cartQty);
-    } else {
-      removeFromCart(product.id);
-    }
+    cartQty
+      ? updateCartItemQty(product.id, cartQty)
+      : removeFromCart(product.id);
   };
 
   const handleCartIconClick = () => {

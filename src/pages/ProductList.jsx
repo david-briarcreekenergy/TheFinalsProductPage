@@ -60,11 +60,9 @@ const ProductList = () => {
 
     if (sort === sorts.rating) {
       sortedProducts.sort((a, b) => b.rating.rate - a.rating.rate);
-    }
-    if (sort === sorts.priceHigh) {
+    } else if (sort === sorts.priceHigh) {
       sortedProducts.sort((a, b) => b.price - a.price);
-    }
-    if (sort === sorts.priceLow) {
+    } else if (sort === sorts.priceLow) {
       sortedProducts.sort((a, b) => a.price - b.price);
     }
 
@@ -84,23 +82,29 @@ const ProductList = () => {
 
   return (
     <Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Box sx={{ minWidth: 120, marginBottom: "10px", marginRight: "10px" }}>
-          <FormControl fullWidth>
-            <InputLabel id="sort-select-label">Sort</InputLabel>
-            <Select
-              labelId="sort-select-label"
-              id="sort-select"
-              value={selectedSort}
-              label="Sort"
-              onChange={handleSortChange}
-            >
-              {menuItems}
-            </Select>
-          </FormControl>
-        </Box>
+      <Box
+        sx={{
+          display: "flex",
+          justifySelf: "flex-end",
+          width: "20%",
+          marginBottom: "10px",
+          marginRight: "15px"
+        }}
+      >
+        <FormControl fullWidth>
+          <InputLabel id="sort-select-label">Sort</InputLabel>
+          <Select
+            labelId="sort-select-label"
+            id="sort-select"
+            value={selectedSort}
+            label="Sort"
+            onChange={handleSortChange}
+          >
+            {menuItems}
+          </Select>
+        </FormControl>
       </Box>
-      <Box sx={{ display: "" }}>
+      <Box>
         <Grid
           container
           spacing={{ xs: 2, md: 3, lg: 3, xl: 3 }}
