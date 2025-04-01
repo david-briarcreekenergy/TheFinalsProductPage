@@ -6,7 +6,7 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import { NavLink } from "react-router";
 import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
@@ -45,7 +45,7 @@ const ProductDetails = () => {
 
   if (product && product.rating)
     return (
-      <Box sx={{ height: "auto", overflow: "hidden", position: "relative" }}>
+      <Box>
         <NavLink
           to="/products"
           onClick={handleCategoryClick}
@@ -66,25 +66,33 @@ const ProductDetails = () => {
             {product.category}
           </Typography>
         </NavLink>
-        <Grid
-          container
-          spacing={4}
-          sx={{ marginTop: { xs: 1, sm: 5, md: 10 }, overflow: "hidden" }}
+        <Container
+          maxWidth={false}
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            marginTop: 4,
+            gap: 10,
+            // width: "100%",
+          }}
         >
-          <Grid size={4}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <CardMedia
               component="img"
               image={product.image}
               alt={`A picture of a/an ${product.title}`}
               sx={{
                 width: "100%",
-                height: "500px",
                 objectFit: "scale-down",
               }}
             />
-          </Grid>
-          <Grid
-            size={8}
+          </Box>
+          <Box
             sx={{
               display: "flex",
               gap: 4,
@@ -92,32 +100,10 @@ const ProductDetails = () => {
               alignItems: "flex-start",
             }}
           >
-            <Typography
-              variant="h4"
-              component="h1"
-              sx={{
-                fontSize: {
-                  xs: "1.5rem",
-                  sm: "2rem",
-                  md: "2.5rem",
-                },
-                fontWeight: "bold",
-              }}
-            >
+            <Typography variant="h4" component="h1">
               {product.title}
             </Typography>
-            <Typography
-              variant="h5"
-              sx={{
-                fontSize: {
-                  xs: "1rem",
-                  sm: "1.5rem",
-                  md: "2rem",
-                },
-              }}
-            >
-              {product.description}
-            </Typography>
+            <Typography variant="h5">{product.description}</Typography>
             <Box
               sx={{
                 display: "flex",
@@ -150,8 +136,8 @@ const ProductDetails = () => {
             </Typography>
 
             <CartItemQuantityBtnGroup product={product} />
-          </Grid>
-        </Grid>
+          </Box>
+        </Container>
       </Box>
     );
 };

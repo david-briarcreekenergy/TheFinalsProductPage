@@ -21,7 +21,7 @@ import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
 import { CartContext } from "../contexts/CartContext";
 import CategorySelect from "./CategorySelect";
-import logo from "../../public/sundry-logo.jpg";
+// import logo from "../../public/sundry-logo.jpg";
 
 const Search = styled("div")(({ theme }) => ({
   height: "40px",
@@ -123,7 +123,7 @@ export default function PrimarySearchAppBar() {
           <Box>
             <CardMedia
               component="img"
-              image={logo}
+              image="/sundry-logo.jpg"
               alt="Sundry company logo"
               height="60"
               sx={{

@@ -26,6 +26,7 @@ export const ProductListProvider = ({ children }) => {
           throw "No Data";
         }
         setProductList(data);
+        console.log("PRODLIST", data);
         const categories = [
           ...new Set(data.map((product) => product.category)),
         ].sort();

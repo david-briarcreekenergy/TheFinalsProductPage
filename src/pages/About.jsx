@@ -1,7 +1,6 @@
 import { CardMedia } from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import image from "../../public/brooke-cagle--uHVRvDr7pg-unsplash.jpg";
 
 const About = () => {
   return (
@@ -24,7 +23,7 @@ const About = () => {
       </Typography>
       <CardMedia
         component={"img"}
-        image={image}
+        image="/brooke-cagle--uHVRvDr7pg-unsplash.jpg"
         alt="Team members collaborating"
         sx={{ width: "30%", alignSelf: "flex-end" }}
       />
