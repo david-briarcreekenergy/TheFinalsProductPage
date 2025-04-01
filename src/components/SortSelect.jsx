@@ -34,11 +34,11 @@ const SortSelect = () => {
       sx={{
         margin: 0,
         padding: 0,
-        width: "20%",
+        width: { xs: "40%", sm: "25%", md: "20%" },
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
+        // justifyContent: "flex-end",
+        // alignItems: "flex-end",
       }}
     >
       <InputLabel

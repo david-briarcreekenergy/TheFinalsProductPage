@@ -7,11 +7,10 @@ export const NavigationProvider = ({ children }) => {
   const {
     setSearchText,
     setFilteredSearchProducts,
-    setFilteredCategoryProducts
+    setFilteredCategoryProducts,
   } = useContext(ProductsContext);
 
   const handleNavLinkClick = () => {
-    console.log("INHANDLENAVLINKCLICK");
     setSearchText("");
     setFilteredSearchProducts([]);
     setFilteredCategoryProducts([]);

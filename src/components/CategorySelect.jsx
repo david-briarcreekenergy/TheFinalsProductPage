@@ -22,7 +22,7 @@ const StyledSelect = styled(Select)(({ theme }) => ({
 }));
 
 const CategorySelect = () => {
-  const { category, categories, handleCategoryChange, restoreProductList } =
+  const { category, categories, handleCategoryChange } =
     useContext(ProductsContext);
 
   const theme = useTheme();
@@ -51,19 +51,11 @@ const CategorySelect = () => {
         alignItems: "flex-end",
       }}
     >
-      <Button
-        onClick={restoreProductList}
-        sx={{
-          "&:hover": { color: theme.palette.text.primary },
-        }}
-      >
-        <Typography variant="caption">Clear All</Typography>
-      </Button>
       <FormControl
         sx={{
           margin: 0,
           padding: 0,
-          width: "20%",
+          width: { xs: "40%", sm: "25%", md: "30%" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

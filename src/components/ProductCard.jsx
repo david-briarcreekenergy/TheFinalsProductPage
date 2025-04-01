@@ -1,36 +1,27 @@
 // TODO fix the positioning of the POPOVER
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Rating from "@mui/material/Rating";
-import { CartContext } from "../contexts/CartContext";
 import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router";
 import StyledNavLink from "./StyledNavLink";
 import { NavigationContext } from "../contexts/NavigationContext";
 import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
-import Stars from "./Stars";
 
 const ProductCard = ({ product }) => {
   const theme = useTheme();
-  const { addToCart, checkForItemInCart } = useContext(CartContext);
-  const [isItemInCart, setIsItemInCart] = useState(() => {
+  // const { addToCart, checkForItemInCart } = useContext(CartContext);
+  /* const [isItemInCart, setIsItemInCart] = useState(() => {
     return checkForItemInCart(product.id);
-  });
+  }); */
   const { handleNavLinkClick } = useContext(NavigationContext);
-
-  const handleCartIconClick = () => {
-    addToCart({ product: product, qty: 1 });
-    setIsItemInCart(true);
-  };
 
   const StyledCard = styled(Card)(({ theme }) => ({
     width: 350,
