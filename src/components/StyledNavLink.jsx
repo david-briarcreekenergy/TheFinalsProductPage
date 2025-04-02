@@ -8,6 +8,13 @@ const StyledNavLink = styled(NavLink, {
   color: onWhiteBkgrd ? theme.palette.primary.main : "white",
   textDecoration: "none",
   fontSize: "1.25em",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.8rem", // Smaller font size for small screens
+    width: "20%",
+  },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "1.2rem", // Larger font size for medium screens and up
+  },
   "&:hover": {
     color: onWhiteBkgrd
       ? theme.palette.secondary.main

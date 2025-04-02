@@ -3,7 +3,6 @@ import { useTheme } from "@emotion/react";
 import { useParams } from "react-router";
 import { getProduct } from "../utils/api";
 import { ProductsContext } from "../contexts/ProductsContext";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
 import Grid from "@mui/material/Grid";

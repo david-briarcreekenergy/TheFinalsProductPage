@@ -34,7 +34,7 @@ const ProductList = () => {
 
   return (
     <Box
-      sx={{
+      /* sx={{
         display: "flex",
         flexWrap: "wrap",
         // gap: 4,
@@ -42,15 +42,23 @@ const ProductList = () => {
         marginBottom: "1em",
         // marginRight: "30px",
         // border: "1px solid black",
+      }} */
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        marginTop: 10,
       }}
     >
       <Box
         sx={{
           display: "flex",
           width: "100%",
-          justifyContent: "flex-end",
+          justifyContent: "space-between",
         }}
       >
+        <Typography variant="h3" component="h1">
+          What We Have Today
+        </Typography>
         <Button
           onClick={restoreProductList}
           sx={{
@@ -76,7 +84,7 @@ const ProductList = () => {
         <CategorySelect />
         <SortSelect />
       </Box>
-      <Grid container spacing={4} justifyContent="center" alignItems="center">
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
         {listItems}
       </Grid>
     </Box>

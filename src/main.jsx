@@ -16,11 +16,6 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<App />}>
           <Route path="/" element={<Home />}></Route>
-
-          {/*     <Route path="products">
-            <Route index element={<ProductList />} />
-            <Route path="details/:productId" element={<ProductDetails />} />
-          </Route> */}
           <Route path="products" element={<ProductList />} />
           <Route path="product/:id" element={<ProductDetails />} />
 

@@ -1,4 +1,4 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -31,10 +31,16 @@ const Search = styled("div")(({ theme }) => ({
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
-  width: "50%",
+  width: "100%",
+  [theme.breakpoints.up("xs")]: {
+    width: "100%", // Width for small screens and up
+  },
   [theme.breakpoints.up("sm")]: {
+    width: "95%", // Width for small screens and up
     marginLeft: theme.spacing(3),
-    // width: "auto"
+  },
+  [theme.breakpoints.up("md")]: {
+    width: "75%", // Width for medium screens and up
   },
 }));
 
@@ -64,14 +70,47 @@ export default function PrimarySearchAppBar() {
     useContext(ProductsContext);
   const { handleNavLinkClick } = useContext(NavigationContext);
   const searchRef = useRef(null);
+  const resultsRef = useRef(null);
+  const [showResults, setShowResults] = useState(false);
   const theme = useTheme();
 
   const handleClick = () => {
     handleNavLinkClick();
   };
 
+  const handleInputFocus = () => {
+    setShowResults(true);
+  };
+
+  const handleClickAway = (event) => {
+    if (
+      searchRef.current &&
+      !searchRef.current.contains(event.target) &&
+      resultsRef.current &&
+      !resultsRef.current.contains(event.target)
+    ) {
+      setShowResults(false);
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      setShowResults(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickAway);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("click", handleClickAway);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const renderSearchResults = (
     <Paper
+      ref={resultsRef}
       sx={{
         position: "absolute",
         top: searchRef.current
@@ -117,17 +156,34 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar
+          sx={{
+            marginLeft: 0,
+            marginRight: 0,
+            paddingLeft: 0,
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
           <Box>
             <CardMedia
               component="img"
               image="/sundry-logo.jpg"
               alt="Sundry company logo"
-              height="60"
+              height="100"
               sx={{
                 objectFit: "scale-down",
+                [theme.breakpoints.up("sm")]: {
+                  width: "50px", // Width for small screens and up
+                },
+                [theme.breakpoints.up("md")]: {
+                  width: "200px", // Width for medium screens and up
+                },
+                [theme.breakpoints.up("lg")]: {
+                  width: "300px", // Width for large screens and up
+                },
               }}
             />
           </Box>
@@ -148,9 +204,9 @@ export default function PrimarySearchAppBar() {
                 inputProps={{ "aria-label": "search" }}
                 value={searchText || ""}
                 onChange={handleSearchChange}
+                onFocus={handleInputFocus}
               />
             </Search>
-            {/* <CategorySelect /> */}
           </Box>
           <Box
             sx={{
@@ -158,14 +214,10 @@ export default function PrimarySearchAppBar() {
               flexDirection: "column",
               alignItems: "flex-end",
               gap: 0,
+              width: "20%",
             }}
           >
-            <IconButton
-              sx={{
-                marginLeft: 10,
-              }}
-              onClick={handleNavLinkClick}
-            >
+            <IconButton onClick={handleNavLinkClick}>
               <NavLink to="/cart">
                 <Badge
                   badgeContent={totalCartItemCount()}
@@ -190,7 +242,8 @@ export default function PrimarySearchAppBar() {
       </AppBar>
 
       {/* Search Results */}
-      {filteredSearchProducts &&
+      {showResults &&
+        filteredSearchProducts &&
         filteredSearchProducts.length > 0 &&
         renderSearchResults}
     </Box>

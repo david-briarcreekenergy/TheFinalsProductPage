@@ -1,6 +1,6 @@
 // TODO fix the positioning of the POPOVER
 import { useContext } from "react";
-
+import { styled, useTheme } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,8 +8,6 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import { styled } from "@mui/material/styles";
-import { useTheme } from "@mui/material/styles";
 import { Link } from "react-router";
 import StyledNavLink from "./StyledNavLink";
 import { NavigationContext } from "../contexts/NavigationContext";
@@ -17,14 +15,12 @@ import CartItemQuantityBtnGroup from "./CartItemQuantityBtnGroup";
 
 const ProductCard = ({ product }) => {
   const theme = useTheme();
-  // const { addToCart, checkForItemInCart } = useContext(CartContext);
-  /* const [isItemInCart, setIsItemInCart] = useState(() => {
-    return checkForItemInCart(product.id);
-  }); */
+
   const { handleNavLinkClick } = useContext(NavigationContext);
 
   const StyledCard = styled(Card)(({ theme }) => ({
-    width: 350,
+    width: "100%", // Allow the card to take up the full width of its container
+    maxWidth: 350,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -50,6 +46,13 @@ const ProductCard = ({ product }) => {
         key={product.id}
         onClick={handleNavLinkClick}
         onWhiteBkgrd={true}
+        sx={{
+          border: "1px solid black",
+          width: "100%",
+          display: "block",
+          padding: 0, // Remove any padding
+          margin: 0,
+        }}
       >
         <CardHeader
           title={product.title}
@@ -58,7 +61,9 @@ const ProductCard = ({ product }) => {
             display: "flex",
             alignItems: "flex-start",
             padding: 2,
-            overflow: "hidden",
+            width: "100%",
+            border: "1px solid red",
+            // overflow: "hidden",
           }}
         />
       </StyledNavLink>

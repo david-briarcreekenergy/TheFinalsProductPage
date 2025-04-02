@@ -41,7 +41,13 @@ const Home = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        marginTop: 10,
+      }}
+    >
       <Container>
         <Masonry columns={3} spacing={2} sequential>
           {/* Mens Clothing category */}

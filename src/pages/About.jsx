@@ -4,7 +4,9 @@ import Typography from "@mui/material/Typography";
 
 const About = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 5 }}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", gap: 5, marginTop: 10 }}
+    >
       <Typography variant="h3" component="h1">
         Who We Are
       </Typography>

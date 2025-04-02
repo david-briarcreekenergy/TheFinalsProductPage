@@ -12,12 +12,18 @@ import ContactForm from "../components/ContactForm";
 export default function Contact() {
   const theme = useTheme();
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        marginTop: 10,
+      }}
+    >
       <Container
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          flexWrap: "wrap"
+          flexWrap: "wrap",
         }}
       >
         <Box
@@ -25,7 +31,7 @@ export default function Contact() {
             display: "flex",
             flexDirection: "column",
             gap: 4,
-            marginBottom: 4
+            marginBottom: 4,
           }}
         >
           <Typography variant="h3" component="h1">
@@ -63,7 +69,7 @@ export default function Contact() {
                 gap: 4,
                 color: "inherit",
                 textDecoration: "none",
-                "&:hover": { color: theme.palette.secondary.main }
+                "&:hover": { color: theme.palette.secondary.main },
               }}
             >
               <PlaceOutlinedIcon fontSize="large" />
@@ -77,7 +83,7 @@ export default function Contact() {
           sx={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start"
+            justifyContent: "flex-start",
           }}
         >
           <Box sx={{ height: "10vh" }}></Box>
