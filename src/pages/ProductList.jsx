@@ -47,6 +47,7 @@ const ProductList = () => {
         display: "flex",
         flexWrap: "wrap",
         marginTop: 10,
+        width: "auto",
       }}
     >
       <Box

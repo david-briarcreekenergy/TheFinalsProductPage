@@ -14,7 +14,13 @@ import {
 
 const Layout = ({ children }) => {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box
+      sx={{
+        display: "flex",
+        backgroundColor: "beige",
+        height: { xs: "auto", sm: "100vh" },
+      }}
+    >
       <AppNavBar />
       <Box component="main" sx={{ flexGrow: 1, mt: 20 }}>
         <Container maxWidth="xl">{children}</Container>
