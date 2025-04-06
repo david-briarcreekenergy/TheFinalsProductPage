@@ -10,45 +10,38 @@ const HugeMonitor = ({ product }) => {
       <Item
         key={1}
         sx={{
-          height: { xs: 300, md: 225 },
+          height: 200,
           position: "relative",
         }}
       >
         <Box
           sx={{
             position: "absolute",
-            top: -20,
-            left: -15,
             width: "100%",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-end",
             alignItems: "flex-end",
+            top: -20,
+            left: -15,
           }}
         >
           <Typography variant="h4" color="black" fontWeight="bold">
             ${product.price}
           </Typography>
         </Box>
-        <Box
+
+        <CardMedia
+          image={product.image}
+          component="img"
+          alt="Huge Gaming monitor"
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "flex-end",
+            objectFit: "scale-down",
+            height: 200,
+            overflow: "hidden",
           }}
-        >
-          <CardMedia
-            image={product.image}
-            component="img"
-            alt="Huge Gaming monitor"
-            sx={{
-              objectFit: "scale-down",
-              height: { xs: 300, md: 210 },
-              overflow: "hidden",
-            }}
-          />
-        </Box>
+        />
       </Item>
     </NavLink>
   );

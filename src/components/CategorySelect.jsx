@@ -27,7 +27,7 @@ const CategorySelect = () => {
 
   const theme = useTheme();
 
-  const menuItems = categories.map((cat) => (
+  const menuItems = categories.map(cat => (
     <MenuItem
       key={cat}
       value={cat}
@@ -55,7 +55,7 @@ const CategorySelect = () => {
         sx={{
           margin: 0,
           padding: 0,
-          width: { xs: "40%", sm: "25%", md: "30%" },
+          width: { xs: "100%", sm: "25%", md: "30%" },
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

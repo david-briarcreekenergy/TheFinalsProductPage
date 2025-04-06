@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate, useLocation } from "react-router";
 import { styled } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import PrimarySearchAppBar from "./PrimarySearchAppBar";
@@ -22,8 +23,10 @@ export const AppNavBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { handleNavLinkClick } = useContext(NavigationContext);
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
-  const handleBackBtnClick = () => {
+  const handleBackBtnClick = e => {
+    e.preventDefault();
     navigate(-1);
     handleNavLinkClick();
   };
@@ -48,10 +51,10 @@ export const AppNavBar = () => {
           Products
         </StyledNavLink>
         <StyledNavLink to="/about" onClick={handleNavClick}>
-          About Us
+          {isSmallScreen ? "About Us" : "Who We Are"}
         </StyledNavLink>
         <StyledNavLink to="/contact" onClick={handleNavClick}>
-          Contact
+          Say Hey!
         </StyledNavLink>
       </StyledToolbar>
     </AppBar>

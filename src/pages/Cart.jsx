@@ -14,7 +14,7 @@ import emptyGroceryCart from "../assets/empty-shopping-cart.png";
 const Cart = () => {
   const { cartItems, clearCart } = useContext(CartContext);
 
-  const listItems = cartItems.map((product) => (
+  const listItems = cartItems.map(product => (
     <CartCard
       key={product.product.id}
       product={product.product}
@@ -24,7 +24,7 @@ const Cart = () => {
 
   return (
     <div>
-      <Box sx={{ marginBottom: "20px" }}>
+      <Box sx={{ marginTop: 10, marginBottom: 3 }}>
         <Grid container spacing={2}>
           <Grid size={3}>
             <Typography variant="h2" component="h2">

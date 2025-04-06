@@ -12,21 +12,22 @@ const ElectronicsCategory = ({ product, handleCategoryClick }) => {
         handleCategoryClick(product.category);
       }}
     >
-      <Item key={5} sx={{ height: 300, position: "relative" }}>
+      <Item key={5} sx={{ height: { sm: 300, md: 200 }, position: "relative" }}>
         <Box
           sx={{
             position: "absolute",
-            top: -70,
-            left: 0,
             width: "100%",
             height: "100%",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            alignItems: "flex-end",
           }}
         >
           <Typography variant="h4" color="blue" fontWeight="bold">
             Electronics
+          </Typography>
+          <Typography variant="h6" color="aqua">
+            From 19.99
           </Typography>
         </Box>
         <CardMedia
@@ -37,7 +38,6 @@ const ElectronicsCategory = ({ product, handleCategoryClick }) => {
             objectFit: "scale-down",
             height: 280,
             overflow: "hidden",
-            marginTop: 4,
           }}
         />
       </Item>

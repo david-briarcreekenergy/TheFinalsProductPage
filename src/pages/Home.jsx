@@ -36,9 +36,9 @@ const Home = () => {
     filteredByCategory,
   } = useContext(ProductsContext);
 
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isSmallScreen = useMediaQuery("(max-width:720px)");
 
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = category => {
     setCategory(category);
     setFilteredCategoryProducts(filteredByCategory(category));
   };
@@ -51,8 +51,10 @@ const Home = () => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        marginTop: 10,
+        marginTop: { xs: 15, sm: 10 },
         width: "auto",
+        height: "auto",
+        overflow: "hidden",
       }}
     >
       <Container>
@@ -65,7 +67,6 @@ const Home = () => {
               gap: 2,
             }}
           >
-            {" "}
             <HugeMonitor product={productList[13]} />
             <WomensCategory
               product={productList[19]}

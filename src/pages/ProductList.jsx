@@ -30,23 +30,14 @@ const ProductList = () => {
       : filteredCategoryProducts.length > 0
       ? filteredCategoryProducts
       : productList
-  ).map((product) => <ProductCard key={product.id} product={product} />);
+  ).map(product => <ProductCard key={product.id} product={product} />);
 
   return (
     <Box
-      /* sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        // gap: 4,
-        width: "auto",
-        marginBottom: "1em",
-        // marginRight: "30px",
-        // border: "1px solid black",
-      }} */
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        marginTop: 10,
+        marginTop: { xs: 15, sm: 10 },
         width: "auto",
       }}
     >
@@ -55,9 +46,14 @@ const ProductList = () => {
           display: "flex",
           width: "100%",
           justifyContent: "space-between",
+          marginBottom: 2,
         }}
       >
-        <Typography variant="h3" component="h1">
+        <Typography
+          variant="h3"
+          component="h1"
+          fontSize={{ xs: "1.5em", sm: "3em" }}
+        >
           What We Have Today
         </Typography>
         <Button
@@ -85,7 +81,12 @@ const ProductList = () => {
         <CategorySelect />
         <SortSelect />
       </Box>
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid
+        container
+        spacing={2}
+        justifyContent={{ xs: "flex-start", sm: "center", md: "flex-start" }}
+        alignItems="center"
+      >
         {listItems}
       </Grid>
     </Box>
@@ -93,33 +94,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-/* <Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "flex-end",
-          alignItems: "flex-end",
-          gap: 4,
-          width: "100%",
-          marginBottom: "1em",
-          marginRight: "30px",
-          border: "1px solid black",
-        }}
-      >
-        <CategorySelect />
-
-        <SortSelect />
-      </Box>
-      <Box>
-        <Grid
-          container
-          spacing={{ xs: 2, md: 3, lg: 3, xl: 3 }}
-          justifyContent="flex-start"
-          alignItems="center"
-        >
-          {listItems}
-        </Grid>
-      </Box>
-    </Box> */

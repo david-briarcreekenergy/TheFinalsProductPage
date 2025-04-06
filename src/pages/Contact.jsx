@@ -16,7 +16,7 @@ export default function Contact() {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        marginTop: 10,
+        marginTop: { xs: 15, sm: 10 },
       }}
     >
       <Container
@@ -34,19 +34,23 @@ export default function Contact() {
             marginBottom: 4,
           }}
         >
-          <Typography variant="h3" component="h1">
+          <Typography variant="h3" component="h1" fontSize={{ xs: "3em" }}>
             Contact Us
           </Typography>
-          <Typography variant="h4" component="p">
+          <Typography
+            variant="h4"
+            component="p"
+            fontSize={{ xs: "2em", sm: "2.5em" }}
+          >
             We'd love to hear from you!
           </Typography>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <Box sx={{ display: "flex", justifyContent: "flex-start", gap: 2 }}>
             <LocalPhoneOutlinedIcon fontSize="large" />
             <Typography variant="h5" component="p">
               800.123.4567
             </Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <EmailOutlinedIcon fontSize="large" />
             <Link
               variant="h5"
@@ -66,7 +70,7 @@ export default function Contact() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 4,
+                gap: 2,
                 color: "inherit",
                 textDecoration: "none",
                 "&:hover": { color: theme.palette.secondary.main },
@@ -74,7 +78,7 @@ export default function Contact() {
             >
               <PlaceOutlinedIcon fontSize="large" />
               <Typography variant="h5" component="p">
-                15 Ward Ave Right Here, TN 34567
+                15 Ward Ave, Right Here, TN 34567
               </Typography>
             </Link>
           </Box>
@@ -86,7 +90,12 @@ export default function Contact() {
             justifyContent: "flex-start",
           }}
         >
-          <Box sx={{ height: "10vh" }}></Box>
+          {/* the empty box ensures the form is lower, to align the top of it with "We'd love..." */}
+          <Box
+            sx={{
+              height: { xs: "0vh", sm: "15vh", lg: "12vh", xl: "10vh" },
+            }}
+          ></Box>
           <ContactForm />
         </Box>
       </Container>

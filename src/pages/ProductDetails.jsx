@@ -22,10 +22,10 @@ const ProductDetails = () => {
 
   useEffect(() => {
     getProduct(id)
-      .then((data) => {
+      .then(data => {
         setProduct(data);
       })
-      .catch((error) => {
+      .catch(error => {
         setError(error.message);
       })
       .finally(() => {
@@ -33,7 +33,7 @@ const ProductDetails = () => {
       });
   }, [id]);
 
-  const handleCategoryClick = (e) => {
+  const handleCategoryClick = e => {
     const category = e.target.textContent;
     setCategory(category);
     setFilteredCategoryProducts(filteredByCategory(category));
@@ -44,7 +44,14 @@ const ProductDetails = () => {
 
   if (product && product.rating)
     return (
-      <Box sx={{ height: "auto", overflow: "hidden", position: "relative" }}>
+      <Box
+        sx={{
+          height: "auto",
+          overflow: "hidden",
+          position: "relative",
+          marginTop: { xs: 15, md: 10 },
+        }}
+      >
         <NavLink
           to="/products"
           onClick={handleCategoryClick}
@@ -68,7 +75,10 @@ const ProductDetails = () => {
         <Grid
           container
           spacing={4}
-          sx={{ marginTop: { xs: 1, sm: 5, md: 10 }, overflow: "hidden" }}
+          sx={{
+            marginTop: { xs: 1, sm: 3 },
+            overflow: "hidden",
+          }}
         >
           <Grid size={4}>
             <CardMedia
@@ -77,7 +87,7 @@ const ProductDetails = () => {
               alt={`A picture of a/an ${product.title}`}
               sx={{
                 width: "100%",
-                height: "500px",
+                height: { xs: 150, sm: 250, md: 400 },
                 objectFit: "scale-down",
               }}
             />
@@ -86,7 +96,7 @@ const ProductDetails = () => {
             size={8}
             sx={{
               display: "flex",
-              gap: 4,
+              gap: 2,
               flexDirection: "column",
               alignItems: "flex-start",
             }}
@@ -96,7 +106,7 @@ const ProductDetails = () => {
               component="h1"
               sx={{
                 fontSize: {
-                  xs: "1.5rem",
+                  xs: "1rem",
                   sm: "2rem",
                   md: "2.5rem",
                 },
@@ -111,7 +121,6 @@ const ProductDetails = () => {
                 fontSize: {
                   xs: "1rem",
                   sm: "1.5rem",
-                  md: "2rem",
                 },
               }}
             >
@@ -122,7 +131,7 @@ const ProductDetails = () => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "flex-start",
-                gap: 1,
+                // gap: 1,
               }}
             >
               <Typography

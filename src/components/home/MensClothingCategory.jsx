@@ -9,7 +9,7 @@ const MensClothingCategory = ({ product, handleCategoryClick }) => {
     <NavLink to={"/products"}>
       <Item
         key={0}
-        sx={{ height: 300, position: "relative" }}
+        sx={{ height: { xs: 250, sm: 300 }, position: "relative" }}
         onClick={() => {
           handleCategoryClick(product.category);
         }}
@@ -36,7 +36,7 @@ const MensClothingCategory = ({ product, handleCategoryClick }) => {
           alt="Men's clothing"
           sx={{
             objectFit: "scale-down",
-            height: 280,
+            height: { xs: 200, sm: 300 },
             overflow: "hidden",
           }}
         />

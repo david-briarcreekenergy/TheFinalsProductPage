@@ -12,7 +12,7 @@ const ContactForm = () => {
     lastName: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
   const [open, setOpen] = useState(false);
 
@@ -24,12 +24,12 @@ const ContactForm = () => {
     setOpen(false);
   };
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     setOpen(true);
@@ -38,7 +38,7 @@ const ContactForm = () => {
       lastName: "",
       email: "",
       phone: "",
-      message: ""
+      message: "",
     });
   };
 
@@ -50,9 +50,9 @@ const ContactForm = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: 2,
-          maxWidth: "600px",
-          margin: "0 auto"
+          rowGap: 2,
+          maxWidth: { xs: "80%", md: "100%" },
+          margin: "0 auto",
         }}
       >
         <Grid container spacing={2}>
@@ -62,14 +62,13 @@ const ContactForm = () => {
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
-              fullWidth
               required
               slotProps={{
                 inputLabel: {
                   sx: {
-                    color: "black"
-                  }
-                }
+                    color: "black",
+                  },
+                },
               }}
             />
           </Grid>
@@ -79,14 +78,13 @@ const ContactForm = () => {
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
-              fullWidth
               required
               slotProps={{
                 inputLabel: {
                   sx: {
-                    color: "black"
-                  }
-                }
+                    color: "black",
+                  },
+                },
               }}
             />
           </Grid>
@@ -97,14 +95,13 @@ const ContactForm = () => {
           type="email"
           value={formData.email}
           onChange={handleChange}
-          fullWidth
           required
           slotProps={{
             inputLabel: {
               sx: {
-                color: "black"
-              }
-            }
+                color: "black",
+              },
+            },
           }}
         />
         <TextField
@@ -113,13 +110,12 @@ const ContactForm = () => {
           type="tel"
           value={formData.phone}
           onChange={handleChange}
-          fullWidth
           slotProps={{
             inputLabel: {
               sx: {
-                color: "black"
-              }
-            }
+                color: "black",
+              },
+            },
           }}
         />
         <TextField
@@ -127,16 +123,15 @@ const ContactForm = () => {
           name="message"
           value={formData.message}
           onChange={handleChange}
-          fullWidth
           multiline
           rows={4}
           required
           slotProps={{
             inputLabel: {
               sx: {
-                color: "black"
-              }
-            }
+                color: "black",
+              },
+            },
           }}
         />
         <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

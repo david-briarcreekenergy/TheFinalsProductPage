@@ -12,7 +12,7 @@ const WomensClothingItem = ({ product }) => {
     <NavLink to={`product/${product.id}`}>
       <Item
         key={4}
-        sx={{ height: isSmallScreen ? 300 : 225, position: "relative" }}
+        sx={{ height: isSmallScreen ? 300 : 250, position: "relative" }}
       >
         <Box
           sx={{
@@ -44,7 +44,7 @@ const WomensClothingItem = ({ product }) => {
             alt="Women's jacket"
             sx={{
               objectFit: "scale-down",
-              height: isSmallScreen ? 300 : 225,
+              height: isSmallScreen ? 300 : 240,
               overflow: "hidden",
             }}
           />

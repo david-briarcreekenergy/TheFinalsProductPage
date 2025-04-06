@@ -17,12 +17,12 @@ const Layout = ({ children }) => {
     <Box
       sx={{
         display: "flex",
-        backgroundColor: "beige",
-        height: { xs: "auto", sm: "100vh" },
+        height: "auto",
+        overflow: "hidden",
       }}
     >
       <AppNavBar />
-      <Box component="main" sx={{ flexGrow: 1, mt: 20 }}>
+      <Box component="main" sx={{ flexGrow: 1, mt: { xs: 20, sm: 15 } }}>
         <Container maxWidth="xl">{children}</Container>
       </Box>
     </Box>

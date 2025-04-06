@@ -47,10 +47,8 @@ const ProductCard = ({ product }) => {
         onClick={handleNavLinkClick}
         onWhiteBkgrd={true}
         sx={{
-          border: "1px solid black",
-          width: "100%",
-          display: "block",
-          padding: 0, // Remove any padding
+          width: { xs: "auto" },
+          padding: 0,
           margin: 0,
         }}
       >
@@ -61,9 +59,7 @@ const ProductCard = ({ product }) => {
             display: "flex",
             alignItems: "flex-start",
             padding: 2,
-            width: "100%",
-            border: "1px solid red",
-            // overflow: "hidden",
+            width: "auto",
           }}
         />
       </StyledNavLink>

@@ -5,17 +5,34 @@ import Typography from "@mui/material/Typography";
 const About = () => {
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", gap: 5, marginTop: 10 }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 3,
+        marginTop: { xs: 15, sm: 10 },
+      }}
     >
-      <Typography variant="h3" component="h1">
+      <Typography
+        variant="h3"
+        component="h1"
+        fontSize={{ xs: "2em", md: "2em", xl: "4em" }}
+      >
         Who We Are
       </Typography>
-      <Typography variant="h5" component={"div"}>
+      <Typography
+        variant="h5"
+        component={"div"}
+        fontSize={{ xs: "1.5em", md: "1.3em", xl: "1.5em" }}
+      >
         Sundry is a small, tight knit team of individuals who are searching the
         market at-large for the best products at the lowest prices and bringing
         them to you.
       </Typography>
-      <Typography variant="h5" component={"div"}>
+      <Typography
+        variant="h5"
+        component={"div"}
+        fontSize={{ xs: "1.5em", md: "1.3em", xl: "1.5em" }}
+      >
         We began this enterprise in 2024 using cutting-edge technology and sound
         business practices to make shopping for deals easier. We actively search
         the web for the best deals on the highest quality products so you don't
@@ -27,7 +44,10 @@ const About = () => {
         component={"img"}
         image="/brooke-cagle--uHVRvDr7pg-unsplash.jpg"
         alt="Team members collaborating"
-        sx={{ width: "30%", alignSelf: "flex-end" }}
+        sx={{
+          width: { xs: "70%", sm: "20%", xl: "30%" },
+          alignSelf: "flex-end",
+        }}
       />
       <Typography
         sx={{ width: "30%", alignSelf: "flex-end", textAlign: "right" }}

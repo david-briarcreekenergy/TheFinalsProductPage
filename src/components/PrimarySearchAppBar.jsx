@@ -1,6 +1,6 @@
 import { useRef, useContext, useEffect, useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
-import { useTheme } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -20,8 +20,6 @@ import { ProductsContext } from "../contexts/ProductsContext";
 import { NavigationContext } from "../contexts/NavigationContext";
 import StyledNavLink from "./StyledNavLink";
 import { CartContext } from "../contexts/CartContext";
-import CategorySelect from "./CategorySelect";
-// import logo from "../../public/sundry-logo.jpg";
 
 const Search = styled("div")(({ theme }) => ({
   height: "40px",
@@ -32,15 +30,15 @@ const Search = styled("div")(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   width: "100%",
-  [theme.breakpoints.up("xs")]: {
-    width: "100%", // Width for small screens and up
+  [theme.breakpoints.down("sm")]: {
+    width: "100%",
   },
   [theme.breakpoints.up("sm")]: {
-    width: "95%", // Width for small screens and up
+    width: "95%",
     marginLeft: theme.spacing(3),
   },
   [theme.breakpoints.up("md")]: {
-    width: "75%", // Width for medium screens and up
+    width: "75%",
   },
 }));
 
@@ -66,13 +64,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   const { totalCartItemCount, cartSubTotal } = useContext(CartContext);
-  const { searchText, filteredSearchProducts, handleSearchChange } =
-    useContext(ProductsContext);
+  const {
+    searchText,
+    setSearchText,
+    filteredSearchProducts,
+    handleSearchChange,
+  } = useContext(ProductsContext);
   const { handleNavLinkClick } = useContext(NavigationContext);
   const searchRef = useRef(null);
   const resultsRef = useRef(null);
   const [showResults, setShowResults] = useState(false);
   const theme = useTheme();
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleClick = () => {
     handleNavLinkClick();
@@ -82,31 +85,32 @@ export default function PrimarySearchAppBar() {
     setShowResults(true);
   };
 
-  const handleClickAway = (event) => {
-    if (
-      searchRef.current &&
-      !searchRef.current.contains(event.target) &&
-      resultsRef.current &&
-      !resultsRef.current.contains(event.target)
-    ) {
-      setShowResults(false);
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Escape") {
-      setShowResults(false);
-    }
-  };
-
   useEffect(() => {
+    const handleClickAway = event => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target) &&
+        resultsRef.current &&
+        !resultsRef.current.contains(event.target)
+      ) {
+        setShowResults(false);
+        setSearchText("");
+      }
+    };
+
+    const handleKeyDown = event => {
+      if (event.key === "Escape") {
+        setShowResults(false);
+        setSearchText("");
+      }
+    };
     document.addEventListener("click", handleClickAway);
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("click", handleClickAway);
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [setSearchText, setShowResults]);
 
   const renderSearchResults = (
     <Paper
@@ -129,9 +133,9 @@ export default function PrimarySearchAppBar() {
     >
       <List>
         {filteredSearchProducts &&
-          filteredSearchProducts.map((product) => (
+          filteredSearchProducts.map(product => (
             <StyledNavLink
-              to={`/products/details/${product.id}`}
+              to={`/product/${product.id}`}
               key={product.id}
               onClick={handleClick}
               onWhiteBkgrd
@@ -175,15 +179,15 @@ export default function PrimarySearchAppBar() {
               height="100"
               sx={{
                 objectFit: "scale-down",
-                [theme.breakpoints.up("sm")]: {
-                  width: "50px", // Width for small screens and up
+                /*  [theme.breakpoints.down("sm")]: {
+                  width: "100px",
                 },
                 [theme.breakpoints.up("md")]: {
-                  width: "200px", // Width for medium screens and up
+                  width: "200px",
                 },
                 [theme.breakpoints.up("lg")]: {
-                  width: "300px", // Width for large screens and up
-                },
+                  width: "300px",
+                }, */
               }}
             />
           </Box>
@@ -214,7 +218,7 @@ export default function PrimarySearchAppBar() {
               flexDirection: "column",
               alignItems: "flex-end",
               gap: 0,
-              width: "20%",
+              width: { xs: "100%", sm: "20%" },
             }}
           >
             <IconButton onClick={handleNavLinkClick}>
