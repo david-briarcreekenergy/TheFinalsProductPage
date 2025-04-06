@@ -13,12 +13,12 @@ const SubtotalPanel = () => {
   return (
     <Paper sx={{ padding: "10px" }}>
       <Grid container spacing={4}>
-        <Grid size={6}>
+        <Grid size={8}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }} color="black">
             {subtotal}
           </Typography>
         </Grid>
-        <Grid size={6}>
+        <Grid size={4}>
           <Typography variant="h6" sx={{ textAlign: "right" }} color="black">
             {cartSubTotal()}
           </Typography>

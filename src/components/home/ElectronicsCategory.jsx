@@ -21,9 +21,17 @@ const ElectronicsCategory = ({ product, handleCategoryClick }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
+            transform: "rotate(-30deg)",
           }}
         >
-          <Typography variant="h4" color="blue" fontWeight="bold">
+          <Typography
+            variant="h4"
+            color="blue"
+            fontWeight="bold"
+            sx={{
+              textShadow: "2px 2px 2px aqua",
+            }}
+          >
             Electronics
           </Typography>
           <Typography variant="h6" color="aqua">

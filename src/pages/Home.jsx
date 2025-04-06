@@ -36,7 +36,7 @@ const Home = () => {
     filteredByCategory,
   } = useContext(ProductsContext);
 
-  const isSmallScreen = useMediaQuery("(max-width:720px)");
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleCategoryClick = category => {
     setCategory(category);
@@ -72,11 +72,11 @@ const Home = () => {
               product={productList[19]}
               handleCategoryClick={handleCategoryClick}
             />
+            <TheRing product={productList[5]} />
             <MensClothingCategory
               product={productList[2]}
               handleCategoryClick={handleCategoryClick}
             />
-            <TheRing product={productList[5]} />
             <ElectronicsCategory
               product={productList[11]}
               handleCategoryClick={handleCategoryClick}

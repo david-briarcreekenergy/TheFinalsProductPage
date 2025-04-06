@@ -81,12 +81,7 @@ const ProductList = () => {
         <CategorySelect />
         <SortSelect />
       </Box>
-      <Grid
-        container
-        spacing={2}
-        justifyContent={{ xs: "flex-start", sm: "center", md: "flex-start" }}
-        alignItems="center"
-      >
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
         {listItems}
       </Grid>
     </Box>

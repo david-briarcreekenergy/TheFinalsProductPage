@@ -29,6 +29,6 @@ body {
   }
 
   a:hover {
-    color: #747bff;
+    color: rgba(189, 229, 246, 150);
   }
 }

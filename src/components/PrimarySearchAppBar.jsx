@@ -1,6 +1,5 @@
 import { useRef, useContext, useEffect, useState } from "react";
 import { styled, alpha, useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -40,6 +39,7 @@ const Search = styled("div")(({ theme }) => ({
   [theme.breakpoints.up("md")]: {
     width: "75%",
   },
+  marginLeft: "10px",
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
@@ -75,7 +75,6 @@ export default function PrimarySearchAppBar() {
   const resultsRef = useRef(null);
   const [showResults, setShowResults] = useState(false);
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery("(max-width:600px)");
 
   const handleClick = () => {
     handleNavLinkClick();
@@ -176,18 +175,9 @@ export default function PrimarySearchAppBar() {
               component="img"
               image="/sundry-logo.jpg"
               alt="Sundry company logo"
-              height="100"
               sx={{
                 objectFit: "scale-down",
-                /*  [theme.breakpoints.down("sm")]: {
-                  width: "100px",
-                },
-                [theme.breakpoints.up("md")]: {
-                  width: "200px",
-                },
-                [theme.breakpoints.up("lg")]: {
-                  width: "300px",
-                }, */
+                width: "150px",
               }}
             />
           </Box>

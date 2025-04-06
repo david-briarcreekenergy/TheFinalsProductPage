@@ -28,8 +28,10 @@ const TheRing = ({ product }) => {
             variant={isSmallScreen ? "h2" : "h4"}
             color="purple"
             fontWeight="bold"
+            sx={{ textShadow: "2px 2px 2px black" }}
           >
-            ${product.price.toFixed(2)}
+            {/* ${product.price.toFixed(2)} */}
+            SAVE $$$
           </Typography>
         </Box>
         <CardMedia

@@ -3,11 +3,8 @@ import Item from "./Item";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import CardMedia from "@mui/material/CardMedia";
-// import useMediaQuery from "@mui/material/useMediaQuery";
 
 const WomensCategory = ({ product, handleCategoryClick }) => {
-  // const isSmallScreen = useMediaQuery("(max-width:600px)");
-
   return (
     <NavLink
       to="/products"
@@ -23,12 +20,34 @@ const WomensCategory = ({ product, handleCategoryClick }) => {
             height: "100%",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-end",
-            top: -25,
+            justifyContent: "center",
           }}
         >
-          <Typography variant="h6" color="purple" fontWeight="bold">
-            Women's Clothing
+          <Typography
+            variant="h4"
+            color="purple"
+            fontWeight="bold"
+            sx={{
+              position: "absolute",
+              transform: "rotate(45deg)",
+              left: "10px",
+              textShadow: "2px 2px 2px yellow",
+            }}
+          >
+            Women's
+          </Typography>
+          <Typography
+            variant="h4"
+            color="purple"
+            fontWeight="bold"
+            sx={{
+              position: "absolute",
+              transform: "rotate(-45deg)",
+              left: { xs: "150px", sm: "200px" },
+              textShadow: "2px 2px 2px yellow",
+            }}
+          >
+            Clothing
           </Typography>
         </Box>
         <CardMedia

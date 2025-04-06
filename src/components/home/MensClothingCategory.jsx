@@ -17,13 +17,15 @@ const MensClothingCategory = ({ product, handleCategoryClick }) => {
         <Box
           sx={{
             position: "absolute",
-            top: -70,
-            left: 0,
+            top: -50,
+            left: -25,
             width: "100%",
             height: "100%",
             display: "flex",
-            justifyContent: "center",
-            alignItems: "flex-end",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            transform: "rotate(45deg)",
+            textShadow: "2px 2px 2px darkblue",
           }}
         >
           <Typography variant="h4" color="yellow" fontWeight="bold">

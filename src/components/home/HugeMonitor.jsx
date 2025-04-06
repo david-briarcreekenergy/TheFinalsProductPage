@@ -23,11 +23,11 @@ const HugeMonitor = ({ product }) => {
             flexDirection: "column",
             justifyContent: "flex-end",
             alignItems: "flex-end",
-            top: -20,
+            top: -15,
             left: -15,
           }}
         >
-          <Typography variant="h4" color="black" fontWeight="bold">
+          <Typography variant="h3" color="#731a06" fontWeight="bold">
             ${product.price}
           </Typography>
         </Box>

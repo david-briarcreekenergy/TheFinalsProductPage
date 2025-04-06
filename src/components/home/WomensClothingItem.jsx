@@ -22,10 +22,17 @@ const WomensClothingItem = ({ product }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            alignItems: "center",
+            alignItems: "flex-start",
+            top: "35%",
+            // left: "20%",
           }}
         >
-          <Typography variant="h4" color="orange" fontWeight="bold">
+          <Typography
+            variant="h3"
+            color="orange"
+            fontWeight="bold"
+            sx={{ textShadow: "2px 2px darkblue" }}
+          >
             ${product.price.toFixed(2)}
           </Typography>
         </Box>

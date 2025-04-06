@@ -24,32 +24,25 @@ const Cart = () => {
 
   return (
     <div>
-      <Box sx={{ marginTop: 10, marginBottom: 3 }}>
+      <Box
+        sx={{ marginTop: { xs: 15, sm: 15, md: 10, lg: 10 }, marginBottom: 3 }}
+      >
         <Grid container spacing={2}>
-          <Grid size={3}>
-            <Typography variant="h2" component="h2">
+          <Grid size={6}>
+            <Typography variant="h2" component="h2" fontSize={{ xs: "2.4em" }}>
               Your Cart
             </Typography>
-          </Grid>
-          <Grid
-            size={5}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "flex-start",
-            }}
-          >
             {cartItems.length > 0 && (
               <Button onClick={clearCart}>Clear Cart</Button>
             )}
           </Grid>
           <Grid
-            size={4}
+            size={6}
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
+              alignItems: "center",
             }}
           >
             <SubtotalPanel />

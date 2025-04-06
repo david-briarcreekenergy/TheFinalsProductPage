@@ -16,7 +16,7 @@ const ContactForm = () => {
   });
   const [open, setOpen] = useState(false);
 
-  const handleClose = (event, reason) => {
+  const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
@@ -63,6 +63,7 @@ const ContactForm = () => {
               value={formData.firstName}
               onChange={handleChange}
               required
+              sx={{ backgroundColor: "white" }}
               slotProps={{
                 inputLabel: {
                   sx: {
@@ -79,6 +80,7 @@ const ContactForm = () => {
               value={formData.lastName}
               onChange={handleChange}
               required
+              sx={{ backgroundColor: "white" }}
               slotProps={{
                 inputLabel: {
                   sx: {
@@ -96,6 +98,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           required
+          sx={{ backgroundColor: "white" }}
           slotProps={{
             inputLabel: {
               sx: {
@@ -110,6 +113,7 @@ const ContactForm = () => {
           type="tel"
           value={formData.phone}
           onChange={handleChange}
+          sx={{ backgroundColor: "white" }}
           slotProps={{
             inputLabel: {
               sx: {
@@ -126,6 +130,7 @@ const ContactForm = () => {
           multiline
           rows={4}
           required
+          sx={{ backgroundColor: "white" }}
           slotProps={{
             inputLabel: {
               sx: {
@@ -148,7 +153,7 @@ const ContactForm = () => {
 
       <Snackbar
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseSnackbar}
         autoHideDuration={4000}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
