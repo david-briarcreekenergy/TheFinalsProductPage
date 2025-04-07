@@ -37,7 +37,6 @@ const ProductList = () => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        marginTop: { xs: 15, sm: 10 },
         width: "auto",
       }}
     >

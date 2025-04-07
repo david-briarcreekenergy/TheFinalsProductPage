@@ -14,18 +14,26 @@ import {
 
 const Layout = ({ children }) => {
   return (
-    <Box
-      sx={{
-        height: { xs: "auto", sm: "100vh" },
-        overflow: "hidden",
-        backgroundColor: "linen",
-      }}
-    >
+    <>
       <AppNavBar />
-      <Box component="main" sx={{ flexGrow: 1, mt: { xs: 35, md: 25 } }}>
-        <Container maxWidth="xl">{children}</Container>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          backgroundColor: "linen",
+        }}
+      >
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            mt: 0,
+            paddingTop: { xs: 32, sm: 20 },
+          }}
+        >
+          <Container maxWidth="xl">{children}</Container>
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

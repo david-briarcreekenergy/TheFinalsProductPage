@@ -9,7 +9,6 @@ const About = () => {
         display: "flex",
         flexDirection: "column",
         gap: 3,
-        marginTop: { xs: 15, sm: 10 },
       }}
     >
       <Typography

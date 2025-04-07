@@ -11,8 +11,8 @@ const SubtotalPanel = () => {
   const items = cartCount === 1 ? "item" : "items";
   const subtotal = `Subtotal (${cartCount} ${items}) `;
   return (
-    <Paper sx={{ padding: "10px" }}>
-      <Grid container spacing={4}>
+    <Paper sx={{ padding: "15px" }}>
+      <Grid container spacing={4} sx={{ flexWrap: "wrap" }}>
         <Grid size={8}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }} color="black">
             {subtotal}

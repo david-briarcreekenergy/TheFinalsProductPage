@@ -25,11 +25,19 @@ const Cart = () => {
   return (
     <div>
       <Box
-        sx={{ marginTop: { xs: 15, sm: 15, md: 10, lg: 10 }, marginBottom: 3 }}
+        sx={{
+          marginTop: 0,
+          marginBottom: 3,
+          paddingTop: 0,
+        }}
       >
-        <Grid container spacing={2}>
-          <Grid size={6}>
-            <Typography variant="h2" component="h2" fontSize={{ xs: "2.4em" }}>
+        <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
+          <Grid size={{ xs: 12, sm: 6 }}>
+            <Typography
+              variant="h2"
+              component="h2"
+              fontSize={{ xs: "1.75em", sm: "3em" }}
+            >
               Your Cart
             </Typography>
             {cartItems.length > 0 && (
@@ -37,12 +45,12 @@ const Cart = () => {
             )}
           </Grid>
           <Grid
-            size={6}
+            size={{ xs: 12, sm: 6 }}
             sx={{
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              alignItems: "center",
+              alignItems: "flex-end",
             }}
           >
             <SubtotalPanel />
@@ -50,9 +58,11 @@ const Cart = () => {
         </Grid>
       </Box>
       {cartItems.length ? (
-        <Stack spacing={4} sx={{ width: "85%" }}>
-          {listItems}
-        </Stack>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Stack spacing={4} sx={{ width: "85%" }}>
+            {listItems}
+          </Stack>
+        </Box>
       ) : (
         <Box sx={{ textAlign: "center" }}>
           <CardMedia

@@ -1,3 +1,6 @@
+/* The components used here, e.g. HugeMonitor, WomensCategory, MensClothingItem, are hard coded 
+because I just needed to have content on the home page.  Real world these would be dynamic via a DB call */
+
 import { useContext } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { ProductsContext } from "../contexts/ProductsContext";
@@ -51,15 +54,11 @@ const Home = () => {
       sx={{
         display: "flex",
         flexWrap: "wrap",
-        marginTop: { xs: 15, sm: 10 },
-        width: "auto",
-        height: "auto",
         overflow: "hidden",
       }}
     >
       <Container>
         {isSmallScreen ? (
-          // Render Box with flex for small screens
           <Box
             sx={{
               display: "flex",

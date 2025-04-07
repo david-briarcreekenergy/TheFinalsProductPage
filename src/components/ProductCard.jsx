@@ -19,7 +19,7 @@ const ProductCard = ({ product }) => {
   const { handleNavLinkClick } = useContext(NavigationContext);
 
   const StyledCard = styled(Card)(({ theme }) => ({
-    width: "100%", // Allow the card to take up the full width of its container
+    width: "100%",
     maxWidth: 350,
     display: "flex",
     flexDirection: "column",
@@ -60,6 +60,7 @@ const ProductCard = ({ product }) => {
             alignItems: "flex-start",
             padding: 2,
             width: "auto",
+            overflow: "hidden",
           }}
         />
       </StyledNavLink>
