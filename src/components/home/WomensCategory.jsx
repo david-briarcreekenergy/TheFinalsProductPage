@@ -12,7 +12,10 @@ const WomensCategory = ({ product, handleCategoryClick }) => {
         handleCategoryClick(product.category);
       }}
     >
-      <Item key={2} sx={{ height: { sm: 300, md: 250 }, position: "relative" }}>
+      <Item
+        key={2}
+        sx={{ height: { xs: 250, sm: 270, md: 260 }, position: "relative" }}
+      >
         <Box
           sx={{
             position: "absolute",
@@ -30,7 +33,7 @@ const WomensCategory = ({ product, handleCategoryClick }) => {
             sx={{
               position: "absolute",
               transform: "rotate(45deg)",
-              left: "10px",
+              left: { xs: 50, sm: 10 },
               textShadow: "2px 2px 2px yellow",
             }}
           >
@@ -42,8 +45,13 @@ const WomensCategory = ({ product, handleCategoryClick }) => {
             fontWeight="bold"
             sx={{
               position: "absolute",
-              transform: "rotate(-45deg)",
-              left: { xs: "150px", sm: "200px" },
+              transform: {
+                xs: "rotate(-45deg)",
+                sm: "rotate(45deg)",
+                md: "rotate(-45deg)",
+              },
+              left: { xs: 290, sm: 10, md: 100 },
+              top: { xs: 100, sm: 150 },
               textShadow: "2px 2px 2px yellow",
             }}
           >

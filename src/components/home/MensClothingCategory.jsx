@@ -17,8 +17,8 @@ const MensClothingCategory = ({ product, handleCategoryClick }) => {
         <Box
           sx={{
             position: "absolute",
-            top: -50,
-            left: -25,
+            top: { xs: -80, sm: 25, md: -50 },
+            left: { xs: -50, sm: -5, md: -25 },
             width: "100%",
             height: "100%",
             display: "flex",

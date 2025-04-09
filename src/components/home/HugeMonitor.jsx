@@ -10,7 +10,7 @@ const HugeMonitor = ({ product }) => {
       <Item
         key={1}
         sx={{
-          height: 200,
+          height: { xs: 250, sm: 200 },
           position: "relative",
         }}
       >
@@ -27,7 +27,12 @@ const HugeMonitor = ({ product }) => {
             left: -15,
           }}
         >
-          <Typography variant="h3" color="#731a06" fontWeight="bold">
+          <Typography
+            variant="h3"
+            color="#731a06"
+            fontWeight="bold"
+            fontSize={{ xs: "4em", sm: "2.25em", md: "3em" }}
+          >
             ${product.price}
           </Typography>
         </Box>

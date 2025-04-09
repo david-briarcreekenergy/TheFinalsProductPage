@@ -12,7 +12,10 @@ const ElectronicsCategory = ({ product, handleCategoryClick }) => {
         handleCategoryClick(product.category);
       }}
     >
-      <Item key={5} sx={{ height: { sm: 300, md: 200 }, position: "relative" }}>
+      <Item
+        key={5}
+        sx={{ height: { xs: 300, sm: 180, md: 190 }, position: "relative" }}
+      >
         <Box
           sx={{
             position: "absolute",

@@ -32,11 +32,11 @@ const Cart = () => {
         }}
       >
         <Grid container spacing={2} sx={{ flexWrap: "wrap" }}>
-          <Grid size={{ xs: 12, sm: 6 }}>
+          <Grid size={{ xs: 12, sm: 5 }}>
             <Typography
               variant="h2"
               component="h2"
-              fontSize={{ xs: "1.75em", sm: "3em" }}
+              fontSize={{ xs: "3em", sm: "3em" }}
             >
               Your Cart
             </Typography>
@@ -44,17 +44,19 @@ const Cart = () => {
               <Button onClick={clearCart}>Clear Cart</Button>
             )}
           </Grid>
-          <Grid
-            size={{ xs: 12, sm: 6 }}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "flex-end",
-            }}
-          >
-            <SubtotalPanel />
-          </Grid>
+          {cartItems.length > 0 && (
+            <Grid
+              size={{ xs: 12, sm: 7 }}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                alignItems: "flex-end",
+              }}
+            >
+              <SubtotalPanel />
+            </Grid>
+          )}
         </Grid>
       </Box>
       {cartItems.length ? (

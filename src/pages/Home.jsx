@@ -64,6 +64,7 @@ const Home = () => {
               display: "flex",
               flexDirection: "column",
               gap: 2,
+              width: "100%",
             }}
           >
             <HugeMonitor product={productList[13]} />
