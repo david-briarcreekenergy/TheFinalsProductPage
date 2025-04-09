@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -6,7 +5,9 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Card, CardMedia } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import Container from "@mui/material/Container";
 import { useForm, FormProvider } from "react-hook-form";
 import CountrySelect from "../CountrySelect";
 import StateSelect from "../StateSelect";
@@ -26,12 +27,14 @@ const CheckoutForm = () => {
   } = methods;
 
   const onSubmit = data => {
-    console.log("DATA", data);
+    try {
+      // console.log here simply so Linter wont squawk about data not being used
+      console.log(data);
+      // here would be an axios call to submit the data
+    } catch (error) {
+      console.error(`Error occurred submitting form data: `, error);
+    }
   };
-
-  useEffect(() => {
-    console.log("ERRORS", errors);
-  }, [errors]);
 
   return (
     <Box
@@ -277,8 +280,16 @@ const CheckoutForm = () => {
               />
             </Card>
             <Box>
-              <Button type="submit" variant="contained" sx={{ width: "100%" }}>
-                Submit
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  width: "100%",
+                  backgroundColor: "darkgreen",
+                  "&:hover": { backgroundColor: "green" },
+                }}
+              >
+                Pay Now
               </Button>
             </Box>
           </Box>

@@ -8,9 +8,12 @@ const Checkout = () => {
         marginTop: 0,
         marginBottom: 3,
         paddingTop: 0,
+        paddingBottom: 3,
         display: "flex",
         flexWrap: "wrap",
         columnGap: 4,
+        rowGap: 4,
+        overflow: "hidden",
       }}
     >
       <CheckoutForm />
