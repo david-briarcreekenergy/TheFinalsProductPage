@@ -77,6 +77,18 @@ const CheckoutForm = () => {
                 }}
                 control={<Checkbox {...register("notify")} />}
               />
+              <TextField
+                id="phone"
+                label="Phone"
+                error={!!errors.phone}
+                helperText={errors?.phone?.message}
+                {...register("phone", {
+                  required: {
+                    value: true,
+                    message: "Phone number required",
+                  },
+                })}
+              />
             </Card>
 
             {/* delivery fields */}
