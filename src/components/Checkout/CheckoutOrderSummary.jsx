@@ -1,10 +1,19 @@
-import Box from "@mui/material/Box";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
-import { List, ListItem, Typography, CardMedia, Badge } from "@mui/material";
-import { useEffect } from "react";
+import {
+  List,
+  ListItem,
+  Typography,
+  CardMedia,
+  Badge,
+  Box,
+  Button,
+} from "@mui/material";
+import StyledNavLink from "../../components/StyledNavLink";
+import { NavigationContext } from "../../contexts/NavigationContext";
 
 const CheckoutOrderSummary = () => {
+  const { handleNavLinkClick } = useContext(NavigationContext);
   const { cartItems, cartSubTotal } = useContext(CartContext);
 
   useEffect(() => {
@@ -44,9 +53,16 @@ const CheckoutOrderSummary = () => {
         paddingRight: 2,
       }}
     >
-      <Typography variant="h4" color="initial">
-        Order Summary
-      </Typography>
+      <Box display="flex" justifyContent={"space-between"} color="secondary">
+        <Typography variant="h4" color="initial">
+          Order Summary
+        </Typography>
+        <Button variant="contained" color="secondary">
+          <StyledNavLink to="/cart" onClick={handleNavLinkClick}>
+            Return to Cart
+          </StyledNavLink>
+        </Button>
+      </Box>
       <List>{listItems}</List>
       <Box display={"flex"} justifyContent={"space-between "}>
         <Typography variant="body1" color="initial">

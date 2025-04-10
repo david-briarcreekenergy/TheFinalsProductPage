@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -7,7 +8,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import Container from "@mui/material/Container";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { useForm, FormProvider } from "react-hook-form";
 import CountrySelect from "../CountrySelect";
 import StateSelect from "../StateSelect";
@@ -23,14 +25,32 @@ const CheckoutForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState,
+    formState: { errors, isSubmitSuccessful },
   } = methods;
+
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (formState.isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset, formState]);
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const onSubmit = data => {
     try {
-      // console.log here simply so Linter wont squawk about data not being used
-      console.log(data);
       // here would be an axios call to submit the data
+      setOpen(true);
+      console.log(data);
     } catch (error) {
       console.error(`Error occurred submitting form data: `, error);
     }
@@ -192,6 +212,10 @@ const CheckoutForm = () => {
                       value: true,
                       message: "Zip code required",
                     },
+                    minLength: {
+                      value: 5,
+                      message: "Zipcode must be at least 5 digits",
+                    },
                   })}
                 />
               </Box>
@@ -240,6 +264,14 @@ const CheckoutForm = () => {
                     value: true,
                     message: "Credit card number required",
                   },
+                  validate: value =>
+                    isNaN(Number(value))
+                      ? "Credit card number must be a number."
+                      : true,
+                  pattern: {
+                    value: /\d{16}/,
+                    message: "Credit card number must be exactly 16 digits",
+                  },
                 })}
               />
 
@@ -254,12 +286,17 @@ const CheckoutForm = () => {
                   name="expirationDate"
                   label="Expiration Date (mm/yy)"
                   variant="outlined"
+                  placeholder="mm/yy"
                   error={!!errors.expirationDate}
                   helperText={errors?.expirationDate?.message}
                   {...register("expirationDate", {
                     required: {
                       value: true,
                       message: "Expiration date required",
+                    },
+                    pattern: {
+                      value: /^(0[1-9]|1[0-2])\/\d{2}$/,
+                      message: "Expiration date format is mm/yy",
                     },
                   })}
                 />
@@ -273,6 +310,10 @@ const CheckoutForm = () => {
                     required: {
                       value: true,
                       message: "Security code required",
+                    },
+                    pattern: {
+                      value: /\d{3}/,
+                      message: "Security code is 3 digits",
                     },
                   })}
                 />
@@ -307,6 +348,14 @@ const CheckoutForm = () => {
           </Box>
         </form>
       </FormProvider>
+      <Snackbar
+        open={open}
+        onClose={handleCloseSnackbar}
+        autoHideDuration={4000}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <Alert>Form data successfully submitted</Alert>
+      </Snackbar>
     </Box>
   );
 };
